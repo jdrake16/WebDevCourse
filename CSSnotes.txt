@@ -1,0 +1,1816 @@
+-------------------------------------------------------------------------------------------------------------
+3/13/23: start 730pm - 930pm
+
+################################################### SECTION 6 ###################################################
+CSS 
+Cascading Style Sheets:
+A lanaguage for describing how documents are presented visually, 
+how they are aranged, and how they are styled.
+
++CSS rules:
+This is a basic pattern that is followed throughout CSS:
+selector {
+    property: value;
+}
+
+Example:
+Make all H1 elements on a page purple
+h1 {
+    color: purple;
+}
+
+Make all image elements 100 pixels wide & 200 pixels tall 
+img {
+    width: 100px;
+    height: 200px;
+}
+
+Select every other text input and give it a red border
+input[type="text"]:nth-of-type(2n){
+    border: 2px solid red;
+}
+
+#Including Styles
+Inline Styles:
+writing styles directly inline on each element (generally considered a bad practice)
+Example:
+<h1 style="color: purple;">Hello World</h1> (dont do this!)
+<button style="background-color: palegreen;">Click Me</button>
+
+This approach is not recommened because it only applies to the element its written in.
+If you wanted to add multiple buttons and have them styled the same, you would have to
+add that "style" line to each button individually. Also you would not be able to share these 
+styles between documents(different pages of the website).
+
+The <style> Element:
+The Style Element can be used inside of the <head> element in an HTML document.
+This approach is much better than using inline styles however, you still cant share styles between documents.
+In this example, we set a rule to change the colors of all H2's.
+<style>
+    h2 {
+        color: palevioletred;
+    }
+</style>
+
+External Stylesheet
+Write your styles in a .css file then include using a <link> in the head of the HTML document. (Recommened)
+<link rel="stylesheet" href="style.css">
+
+And in the css file:
+h1{
+    color: palegreen;
+}
+
++Color Property (color)
+Sets a rule for text color.
+There are many ways to specify color. 
+some examples include:
+color: purple
+color: #00ff00;
+color: rgb(214, 122, 127)
+
+Named Colors:
+Easy to use but is the most limited set.
+All browser recognize 140 named colors (these are constants).
+
+RGB Colors:
+An additive color model in which red, green, and blue light are added 
+together in various ways to reproduce a broad array of colors.
+
+There are red, green, and blue channels. Each channel ranging from 0-255 (0 being off)
+red = rgb(255, 0, 0)
+green = rgb(0, 255, 0)
+blue = rgb(0, 0, 255)
+purple = rgb(173, 20, 219)
+black = rgb(0, 0, 0)
+
+HEX Colors:
+Also comprised of red, green, and blue channels with a range of 0-255,
+but represented with a hexadecimal.
+
+The hexadecimal range:
+least light(0) --> 0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F <-- most light(255) 
+
+r = #ff0000;
+g = #00ff00;
+b = #0000ff;
+
+Tip:
+If your hexcode features all of the same numbers #0011ff
+it can be shortened to #01f
+
+-------------------------------------------------------------------------------------------------------------
+3/14/23: start 930pm - 1130pm
+
+Text
+
++Aligning Text (left, center, right)
+h1 {
+    text-align: center;
+}
+
++Font Weight (boldness of font)
+p {
+    font-weight: normal;
+    font-weight: bold;
+    font-weight: 400; //normal
+    font-weight: 700; //bold
+    font-weight: 900; //extra bold
+}
+
++Text Decoration (underlines & such)
+h1 {
+    text-decoration: underline;
+}
+
+can also specify colors/different types of underlines:
+h2 {
+    text-decoration: green underline;
+    text-decoration: palegoldenrod wavy underline;
+}
+
+to remove the default underline from anchor tags:
+a {
+    text-decoration: none;
+}
+
++Line Height (vertical space between lines)
+p {
+    line-height: normal;
+    line-height: 1.5;
+    line-height: 3em;
+    line-height: 150%;
+    line-height: 32px;
+}
+
++Letter Spacing (horizontal space between letters)
+p {
+    letter-spacing: normal;
+    letter-spacing: .2rem;
+    letter-spacing: 1px;
+    letter-spacing: -1px;
+}
+
++Font Size (many different units for changing size)
+p {
+    font-size: small;
+    font-size: 12px;
+    font-size: 0.8em;
+    font-size: 80%;
+    font-size: inherit;
+    font-size: initial;
+}
+
++Font Family (different types of fonts)
+It should be noted that not all fonts are available across all different platforms.
+So, there might be a font that is common on windows machines but is not on a mac.
+
+For this reason we have font stacks, like the one below.
+p {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+This list will start with the first choice, and if its not available,
+the next font will be used, and so on...
+
+It is also possible to import custom fonts.
+
++Units
+
+Absolute Units
+PX - the most commonly used absolute unit. 1px doesnt equal the width of a pixel.
+(not recommened for responsive websites)
+To actually make our h1 font bigger we can use the following CSS rule:
+font-size: 100px;
+
+PT
+CM
+IN
+MM
+
+Relative Units
+EM
+REM
+VH
+%
+
+################################################### SECTION 7 ###################################################
+-------------------------------------------------------------------------------------------------------------
+3/15/23: start 845pm - 1015pm
+
+CSS Selectors
+
+RECAP: (css rules)
+selector {
+    property: value;
+}
+
++Universal selector (selects everything)
+* {
+    color: pink;
+}
+
++Element Selector (selects everything of a given type)
+img {
+    width: 100px;
+    height: 200px;
+}
+
+can select multiple elements at once:
+h1, h2 {
+    color: blue;
+}
+
++ID Selector (selects the element via its id)
+#logout {
+    color : orange;
+}
+
+RECAP: (label has a "for" element, and input has an "id" element)
+<label for="search">Search</label>
+<input type="text" placeholder="search" id="search">
+
+here we will change the color of the sign up button only:
+<button id="signup">Sign Up</button>
+
+#signup {
+    background-color: #B05A7A;
+}
+
+Any given id should only be used once throughout the entire site.
+
++Class Selector (selects elements via class)
+
+select elements with class of complete:
+.complete {
+    color: green;
+}
+
+can also use the dot operator to select certain attributes that belong to a class
+Example:
+select all the sections that belong to the .post class
+section.post{
+    color: red;
+}
+
+-------------------------------------------------------------------------------------------------------------
+3/16/23: start 1130am - 12pm and 11pm - 12am
+
++Descendant Selector (selects all descendants of a given element)
+Example:
+select all <a>'s that are nested in a <li>
+li a {
+    color: teal;
+}
+
+It should br noted that a space and a comma will perform different roles as the selector.
+Comma = li and a
+Space = a's that are nested in a li
+
+Example: 
+change the text color of all the anchor tags in a span.
+span a {
+    color: #C27664;
+}
+
+we could also use the class attribute in combination with descendant selectors.
+if we gave all our sections a class attribute of "post", we could modify all
+the button's in this manner.
+.post button {
+    color: #B05A7A;
+    border-color: #B05A7A;
+}
+
+in one last example, we will change the text color of the <ul> (bullets),
+and the <a>'s that are nested inside of a footer.
+footer ul,a{
+    color: #B05A7A;
+}
+
++Adjacent Selector 
+(selects the element that is immediately preceded by the first named selector element)
+
+Example:
+select only the paragraphs that are immediately preceded by an <h1>
+h1 + p {
+    color: red;
+}
+
+in the previous example, h1 and p are the selectors, and the + symbol
+is a combinator.
+
++Direct Child 
+(selects the element that is a direct child of the first named selector element)
+
+Example:
+select only the <li>'s that are direct children of a <div> element.
+div > li {
+    color: white;
+}
+
++Attribute Selector (can select elements based on their attribute)
+
+Example:
+select all input elements where the type attribute is set to "text":
+input[type="text"] { 
+    width: 300px;
+    color: yellow;
+}
+
+-------------------------------------------------------------------------------------------------------------
+3/18/23: start 1pm - 2pm 
+
+Pseudo Classes
+(Keyword added to a selector that specifies a special state of the selected element)
+
++Hover (for hovering effect)
+
+Example:
+selects any <a> element when hovered
+a:hover{
+    color: orange;
+}
+
+change the background color of our buttons when hovered (that belong to .post class)
+.post button:hover{
+    background-color:#C27664;
+}
+
++Active 
+(pressed-on effect)
+
+Example:
+button:active{
+    border-color: #84D2C5;
+}
+
++Checked 
+(effect an element that is checked)
+
+Example:
+radio element, when checked
+input[type="radio"]:checked{
+    box-shadow: 0 0 0 3px orange;
+}
+
+option elements when selected
+option:checked{
+    color: red;
+}
+
++Nth Of Type 
+(matches elements of a given type based on position, among siblings)
+select every other section in the .post class
+.post:nth-of-type(2n) {
+    background-color: black;
+}
+
+select only the third element in the .post class
+.post:nth-of-type(3){
+    background-color: blue;
+}
+
+can also specify even/odd numbers
+.square:nth-of-type(even){
+    background-color: black;
+}
+
+.square:nth-of-type(odd){
+    background-color: red;
+}
+
+Pseudo Elements
+(Keyword added to a selector that lets you style a particular part of a selected element)
+
++First Letter 
+Example:
+selects the first letter of a <p>
+p::first letter {
+    font-size: 130%;
+}
+
++First Line
+Example:
+selects the first letter of a <p>
+p::first line {
+    color: green;
+}
+
++Selection 
+(will affect any part of the document that is selected/highlighted)
+::selection{
+    color: orange;
+}
+
+or we could make it specific to an element
+p::selection{
+    color: blue;
+}
+
+-------------------------------------------------------------------------------------------------------------
+3/21/23: 11am - 12pm
+
+The Cascade
+When it comes to CSS, the order your styles are declared in and linked matters.
+Example:
+h1 {
+    color: red;
+}
+h1 {
+    color: purple;
+}
+In this case purple will be observed.
+
+In short the selector closer to the bottom of the CSS file will be observed, 
+this also applies to different style sheets.
+So, if we have two links for a couple css files;
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style2.css">
+
+and they both contain a rule for changing the text color on an h1,
+the style2.css file will have that rule observed.
+
++Specificity
+(how the browser decides which rules to apply 
+when multiple rules could apply to the same element)
+
+It is a measure of how specific a given selector is;
+The more specific selector will be observed.
+
+Moral of the story:
+Be specific and avoid conflicts!!!
+Example:
+.post button{   /* specific */
+    color: red;
+}
+
+button{   /* not specific */
+    color: blue;
+}
+So, the more element selectors you have, the more specific something is.
+But theres more! Some selectors are more specific than others.
+Most specific:
+Id           +100
+Class        +10
+Element      +1
+Least specific:
+(the higher the score, the more specific it is)
+
+There are Specificity calculators that exist if you are not sure!
+https://specificity.keegan.st/
+
+So to recap, one class will beat two elements, 
+and one id will beat anything else.
+
+-------------------------------------------------------------------------------------------------------------
+3/23/23: 11am - 1pm
+ 
+CSS Browser Inspector Tools 
+
+Just like you can view a pages html using the browser inspector,
+you can also take a look at the CSS, and one of the things that it 
+shows you are elements that lost the specificity battle.
+So, if you have an element that is referenced a couple times, and in both
+instances the color was set to something different, the selector that wasnt observed 
+will have a line crossing it out (strikethrough).
+
+It is also a nice tool for experimenting with styles, because any changes you make 
+in the inspector will not be saved one the page is refreshed.
+
+Wrapping Up Specificity
+
++Inline Styles
+(the most specific! however its still not recommened that you use them)
+
+using inline styles to alter a button (with coral text):
+<button id="signup" style="color:coral">Sign Up</button>
+
+So, even if there is a selector that references the id in the css file, 
+the inline style will still be observed before the id.
+
++The Important Exception
+(when an !important rule is used on a style declaration, this overrides any other declarations)
+
+Tips For Using:
+-always look for a way to use specificity before considering !important
+-only use !important on page-specific css that overrides foreign css (from external libraries like
+Bootstrap or normalize.css)
+- never use !important when writing a plugin/mashup
+- never use important on site-wide css
+
+So, basically dont use it.
+
+Sytax for !important:
+
+asume that our buttons are all linked to selectors already,
+using the !important exception, we can override all of those selectors.
+Example:
+button{
+    color: blue !important;
+}
+
+To recap the wrapping up of specificity, 
+dont use Inline Styles, or the !important exception.
+
+
+Inheritance
+
+Some css properties will be inherited by child elements 
+if they are not set on that element specifically.
+
+Example:
+In the Inheritance demo, we see that if set the body font color to purple,
+the entire document will also have a text color of purple.
+body {
+    color: purple;
+}
+
+other elements that were affected via Inheritance:
+h1, section, h2, form, input, etc.
+
+if we specify a selector for the h1 element, it is now the only thing that doesnt inherit
+purple from the body selector/rule.
+h1 {
+    color: blue;
+}
+
+In the browser inspector, if we were to select an element that inherited a rule,
+to see where it gets its style from (in this case the font color purple), it would show
+nothing for that individual element but if we scroll down on the inspector, we can see
+that it inherited the font color purple from the body selector.
+
+Now if we remove the h1 rule and add a rule for the sections,
+both sections (Including everything inside them will inherit its rule)
+and the h1 will default to the inherited purple font again.
+section {
+    color: aqua;
+}
+
+When we add a rule for the form control to have a greenyellow font,
+one might expect the input, and button to inherit that same greenyellow color,
+(because they are nested inside that from) but only the label inherits the greenyellow font.
+form {
+    color: greenyellow;
+}
+This is because certain elements dont inherit by default, 
+unless you specify that they should. 
+Example:
+button, input {
+    color: inherit;
+}
+
+################################################### SECTION 8 ###################################################
+
+The CSS Box Model
+
+"the idea that everything in css is a box" - Colt Steele
+
+When inspecting the html/css in the browser inspector, 
+youll notice that as you highlight an element,
+a box will appear around it in the webpage.
+
+This furthers the idea that everything is a box in css.
+
+Each one of these boxes has different properties, which are all represented by different
+colors when inspecting.
+
+Heres a quick diagram of The Box Model:
+
+                                    Border 
++-------+              +-------------------+
+| Box 1 |<-- Margin -->| Padding           |
++-------+              |  +-------------+  |
+                       |  | Content Box |  |
+                       |  +-------------+  |
+                       |                   |
+                       +-------------------+
+
+Inner Content Box
+
++Width 
+(sets the width of an element)
+by default, it sets the width of the content area, but if box-sizing is set to border,
+it sets the width of the border area.
+
+we can set the width of an element like so:
+div {
+    width: 200px;
+}
+
+basically, if we dont set the width of an element, even if its just an h1 with a small amount
+of text, when we alter something like the background color, it will go across the entire screen, 
+despite the fact that the content in that box is much smaller than the length of the screen.
+
++Height
+(set the height of an element)
+
+we can set the height of an element like so:
+div {
+    width: 200px;
+    height: 200px;
+}
+
+same rules apply to height.
+
++Border
+
+Properties(of Border):
+border-width: controls the thickness of the border.
+border-color: does exactly what you think it does.
+border-style: controls the line style; dashed, solid, etc.
+
+In order to make the border visible, the three properties 
+of border must be used.
+
+#one {
+    border-width: 5px;
+    border-color: black; 
+    border-style: solid;
+}
+
+thing is, when we add this border to our element as is, 
+that element will now be 10px wider (5 on either side)
+unless you use the box-sizing property. 
+adding this line to our css rule will ensure that the element with a border wont 
+exceed the original size of that border.
+/* box-sizing: border-box; */
+
+There are many options for border-style, here are a few:
+- none
+- dotted
+- inset 
+- dashed solid
+
+Below are a couple examples of how you can apply multiple styles at once
+- dashed double none
+- dashed groove none dotted
+
++Border Shorthand
+One can create borders quickly with the border shorthand properties.
+a few examples:
+border: solid;
+border: dashed red;
+border: 1rem solid;
+border: thick double #32a1ce;
+border: 4mm ridge #000;
+
+with border shorthand, we could take this:
+#two {
+    background-color: #b5838d;
+    border-color: #ffcdb2;
+    border-width: 3px;
+    border-style: dashed;
+    border-left-width: 8px;
+}
+
+and shorten it to this:
+#two{
+    background-color: #b5838d;
+    border: 3px dashed #000;
+}
+
+and if you wanted to modify one side of the border after,
+just add it after the shorthand:
+border-left-style: dotted
+
++Border Radius
+(the border-radius property rounds the corners of an elements outer border edge)
+it rounds the edges of a box.
+
+There are different ways you can apply the border-radius:
+Example:
+border-radius:30px;
+border-radius:25% 10%
+border-radius:10% 30% 50% 70%
+border-radius:10% / 50%
+
+NOTE: 50% will give you a circle
+
+Refer to MDN for ways to make cool borders.
+
+-------------------------------------------------------------------------------------------------------------
+3/26/23: 730am-930am and 830pm-1030pm
+
++Padding
+(the space between the content in the content box and the border of an element)
+
+We can add padding to each side individually:
+padding-left: 
+padding-bottom: 
+
+Or we can use the shorthand, and pad all sides at once:
+padding:
+
+Example:
+padding: 5% (all four sides)
+padding: 10px 20px (vertical, horizontal)
+padding: 1em 3px 30px 5px (top, right, bottom, left)
+padding: 1px 2px 2px (top, horizontal, bottom) - not as common
+
+Here we add some padding to our h1
+h1 {
+    padding-left: 100px;
+    padding-top: 50px;
+}
+
++Margin
+(the space outside an elements border, between that element another element)
+
+So, 
+padding is the spacing inside of the border, and margin is the spacing outside.
+
+We can add margin to each side individually:
+margin-left: 
+margin-bottom:
+
+Or we can use the shorthand, and affect margin on all sides at once:
+margin:
+
+margin: 10px (all four sides)
+margin: 10px 20px (vertical, horizontal)
+margin: 5px 1px 0 2px (top, right, bottom, left)
+
+Unlike most elements h1 and the body element, 
+have a default margin (which can be removed).
+
+It is common to remove the default margin from a body element.
+
+Quick Tip!
+if you wanted to center an object(block-level element) in its container, you can achieve this with:
+margin: auto;
+
+if you want to add a margin to the top and bottom add that as the first argument
+margin: 20px auto;
+(20px is for the top and bottom margin) 
+
+h1 {
+    margin-left: 100px;
+    margin-top: 50px;
+}
+
++Display
+(sets whether an element is treated as a block or inline element)
+
+Inline Elements
+fit in alongside other elements  |x|x|x|
+
+Block Elements
+take up a whole "block" of space |x|
+                                 |x|
+                                 |x|
+
+Inline Block Elements
+behave like an inline element except width, height, margin, and padding are observed. | x| x |x |
+
+To use an inline-block element, you must specify
+span {
+    display: inline-block;
+}
+
+To hide an element, use:
+display: none;
+
+-------------------------------------------------------------------------------------------------------------
+3/27/23: 930pm-1030pm
+
+CSS Units
+
+Absolute Units
+
++PX - most commonly used for an absolute unit.
+
+Relative Units
+
++% 
+(percentages are always relative to some other value)
+Example: 
+width: 50% (half the width of the parent)
+line-height: 50% (half the font size of the element itself)
+
+If we have a div that is a child of a section,
+when we set a percentage for that div to 50%, width and height,
+it will be 50% of the parent's width/height
+div{
+    width:50%;
+    height:50%;
+}
+
++EM
+(with font size, 1em equals the font size of the parent, 
+with other properties, 1em is equal to the computed font-size of the element itself)
+
+What this means is that if we have an element with a font size of 30px,
+and we set the margin of a child of that element to 1em, the margin will 
+be 30px, and if we set that margin to 2em's, that margin will now be 60px.
+
++REM
+(Root Ems: relative to the root html elements font-size)
+
+If the root font-size is 20px, 1 rem is always 20px, 2rem is always 40px, etc.
+
+################################################### SECTION 9 ###################################################
+
+Other Assorted CSS Properties
+
+Opacity & The Alpha Channel
+
+With an rgab value, the a represents Alpha (or Transparency).
+rgab(20, 200, 115, 0.5) - red, green, blue, alpha
+
+The alpha property, has a max value of 1, with 0 being completely transparent.
+
+Here we apply a white background color with an alpha value of 0.7 
+(which will make it slighty transparent) and in this case, the parent of 
+this div has a pink background color which will now make this div to appear light-pink
+div {
+    width: 50%;
+    height: 50%;
+    background-color: rgba(255,255,255,0.7)
+}
+
+it is also possible to use alpha values with hex code colors,
+these values range from 00 to ff (with 00 being fully transparent) 
+Example:
+ffffff00 (a fully transparent white)
+000000ff (a fully opaque black)
+
++Opacity
+(sets the opacity of an element, opacity is the degree to which content behind an element
+is hidden, and is the opposite of transparency.)
+
+In another div, we set a background color to yellow, and without any 
+opacity, its just a yellow square, but when we set the opacity to 0.3
+the entire element is affected! (even the font)
+
+div {
+    width: 50%;
+    height: 50%;
+    background-color: yellow;
+    opacity: 0.3;
+}
+
+-------------------------------------------------------------------------------------------------------------
+3/28/23: 9pm-1030pm
+
++Position
+(sets how an element is positioned in a document)
+
+The top, right, bottom, and left properties determine the final location of positioned elements.
+
+Position Properties
+
+Static:
+The element is positioned according to the normal flow of the document. 
+The top, right, bottom, left, and z-index properties have no effect. This is the default value.
+
+Relative: 
+The element is positioned according to the normal flow of the document, 
+and then offset relative to itself based on the values of top, right, bottom, and left.
+
+Absolute:
+The element is removed from the normal document flow, and no space is created for the 
+element in the page layout. It is positioned relative to its closest positioned ancestor, if any; 
+otherwise, it is placed relative to the initial containing block.
+
+Fixed:
+When an element is given position: fixed in CSS, it is taken out of the normal flow of the document, 
+which means that it will not affect the positioning of any other elements on the page. 
+This element will be positioned relative to the viewport, which is the visible area of the web page, 
+and not to its parent container.
+
+The final position of the fixed element is determined by the values of 
+top, right, bottom, and left properties. These values specify the distance of the element's edges from
+the corresponding edges of the viewport. For example, top: 50px; left: 20px; 
+would position the element 50 pixels from the top and 20 pixels from the left of the viewport.
+
+One thing to note is that if any ancestor element of the fixed element has a 
+transform, perspective, or filter property set to something other than none, 
+then that ancestor will become the containing block for the fixed element. 
+This means that the fixed element will be positioned relative to the transformed ancestor element, 
+rather than the viewport.
+
+Also, it's important to keep in mind that using position: fixed always creates a new stacking context, 
+which means that the element will be placed on top of other elements on the page, 
+regardless of their position in the HTML structure.
+
++Transition
+(allow us to animate the transition from one property value to another)
+
+Suppose we have a pink square (div) in a doc, that changes into a green circle when hovered over.
+
+Without transitions, the change from square to circle is instant and quite jarring,
+but with a simple transtion, we can smoothly make that change (by animating the color and border radius).
+Example:
+.circle {
+    width: 300px;
+    height: 300px;
+    background-color: magenta;
+    transition: 1s;
+}
+
+.circle:hover {
+    background-color: cyan;
+    border-radius: 50%;
+}
+
+Transitions have some properties we can use as arguments when creating our animation.
+They are:
+Property Name | Duration | Timimng Function | Delay
+
+Syntax:
+transition: background-color 1s ease-in, border-radius 2s;
+
+Below is an example of how different easings can change the feel of an animation:
+We have 4 turquoise squares that all move to a certain destination in 3 seconds.
+The difference is the timing-function (easing) assigned to each square.
+Some may appear to move faster or slower but they all arrive at the same place simultaneously!
+
+section div {
+    height: 100px;
+    width: 100px;
+    background-color: turquoise;
+    margin: 20px 0;
+    transition: margin-left 3s;
+} 
+
+section:hover div {
+    margin-left:500px;
+}
+
+div:nth-of-type(1){
+    transition-timing-function: ease-in;
+}
+div:nth-of-type(2){
+    transition-timing-function: ease-out;
+}
+div:nth-of-type(3){
+    transition-timing-function: cubic-bezier(0.7, 0, 0.84, 0);
+}
+div:nth-of-type(4){
+    transition-timing-function:  cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+NOTE: it is best to single out the properties that you want to animate.
+
+-------------------------------------------------------------------------------------------------------------
+3/29/23: 1230pm-130pm
+
++Transform
+(allows us to rotate, scale, skew, or translate an element)
+
+
+Transform Functions
+Rotate
+(rotates an element around a fixed point on the 2D plane)
+Example:
+here we rotate an h1 45 degrees with the orgin of rotation being in the tor right corner 
+h1 {
+    transform-origin: top right;
+    transform: rotate(45deg);
+}
+if we dont set the orgin it will default to rotate in the center.
+
+Scale
+(defines a transformation that resizes an element on the 2D plane)
+Example:
+here we scale down an h1 to half its original size
+h1 {
+    transform: scale(0.5);
+}
+to double the size we would set the scale to 2
+transform: scale(2);
+
+we can also affect the width(x) and height(y) in the same line
+transform: scale(2,1)
+
+or we can explicitly scale x or y
+transform: scaleX(1)
+transform: scaleY(2)
+
+Translate
+(translates or moves an element on the 2D plane)
+Example:
+here we move an h1 left and then down
+h1 {
+    transform: translate(-100px, 50px);
+}
+
+we could also explicitly move it on the x / y coordinate
+transform: translateX(200px); --right
+transform: translateY(-200px); --up
+
+Skew
+(defines a transformation that skews an element on the 2D plane)
+Example:
+here we skew an h1 30 degrees on x and y
+h1 {
+    transform: skew(30deg);
+}
+
+we could also skew the x and y individually
+transform: skew(10deg, 25deg);
+
+It is also possible to combine multiple funciton values
+transform: translateX(10px) rotate(10deg) skewY(30deg);
+
+-------------------------------------------------------------------------------------------------------------
+3/29/23: 9pm-11pm
+
++Background
+(a shorthand CSS property that sets all background styles at once, such as color, image, origin, and size)
+
+here we have a section that almost takes up an entire page
+section {
+    width: 80%;
+    height: 800px;
+    background-color: purple;
+    margin: 0 auto;
+}
+
+Now that we've established the size of our section, 
+we can change the background-color to have an image instead.
+Example:
+background-image: url("cloud_crop.png");
+
+This image can be accessed locally in a folder or via a url.
+
+The image selected doesnt quite fit on this page, so we have a few options to help.
+
+The "cover" value scales the image as large as possible without stretching the image,
+and if the dimensions of the image differ from the element, its cropped either vertically
+or horizontally so that no space remains.
+Example:
+background-size: cover;
+
+The "contain" value scales the image as large as possible without cropping or stretching
+the image, however this can mean that the image might be reapeated.
+
+These values fit our image pretty well:
+section {
+    width: 80%;
+    height: 500px;
+    background-image: url("cloud_crop2.png");
+    background-size: cover;
+    margin:200px auto;
+}
+
+For most of the values that can be added to the background property, 
+the order doesnt matter.
+However, if you are using the background size <bg-size> value, it may only be 
+included immediately after the <position>, separated with the '/' character.
+Example:
+"center/80%" (position/size)
+
+we can use the shorthand background property to make our css more consice:
+section {
+    width: 80%;
+    height: 500px;
+    background: center/cover url("cloud_crop2.png");
+    margin:200px auto;
+}
+
+-------------------------------------------------------------------------------------------------------------
+3/30/23: 11am-2pm
+
+Google Fonts
+
+It is possible to add a font file to your HTML.
+
+Some fonts can get pricy, and even chrage by the amount 
+of times that font is loaded in a web page.
+
+Using google fonts is a web-safe way of adding nice fonts to your page
+without much risk of a user not having access to a particular font 
+(which can vary from machine to machine)
+
+On Google Fonts:
+After selecting a font and whatever font weights you want with said font
+(with the "+ Select this style" option), a "Selected Family" tab will appear 
+in the top right hand corner of the page.
+
+You will now have the option to download or embed the fonts you have chosen.
+
+If you go the embedded route, you will also be given CSS rules for specifying families.
+
+The embedded link tab will be added to the Head in the HTML for a page.
+HTML Link Tag:
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:wght@100;400&display=swap"
+    rel="stylesheet">
+
+CSS rules:
+font-family: Roboto, sans-serif;
+
+Photosite Mock page
+
+We start with a simple HTML doc that contains 9 images.
+
+As an example, we can hard-code a width for all the images:
+img {
+    width: 100px;
+}
+
+This will not make our images dynamic, so if the page is resized,
+the images will still be 100px wide.
+
+What we can do instead, is use percentage as a unit instead of hard coding with pixels.
+img {
+    width: 40%;
+}
+
+This 40% represents 40% of the body element on this page.
+
+With a width of 40% and the size of the photos, we get 2 images, per row on the page.
+If we want to get 3 per row, we need only change the width to 30%.
+
+So now the page is looking a bit better but the images have no space in between each other.
+To add some we just add a margin rule to our img css rule.
+margin: 20px;
+
+But this would also be a hard-coded value, so we have to use another method.
+Currently each photo is taking up 30% of the documents body, so 30 + 30 + 30 = 90,
+which means we 10% more of that body to work with.
+
+We have to account for either side of the photo so that leaves us with 6 places where
+the margin will have to be divided evenly, as displayed by the diagram below:
+
+1 +----+ 2 | 3 +----+ 4 | 5 +----+ 6
+
+To get that value we just divide 10 by 6 and get; 1.66666667
+
+We can now add this value as a percentage to our margin, like so:
+margin: 1.66666667%;
+
+There is also an option that uses a css funciton to make the calculation for you:
+margin: calc(10%/6);
+
+This will work for simple pages where you might want a grid display, 
+but there are more modern approaches that we will cover to achieve the same effect.
+
+Now that we have the photos situated, we will focus our attention on the heading for the page.
+Which in this case is just a nav with our name in it, that we will add some style to.
+
+We'll start by making the font all caps, and giving the nav a border:
+nav {
+    text-transform: uppercase;
+    border-bottom: 2px solid #eee;
+}
+
+If we want this border to be line and fit with our grid, 
+we can use the same calculations that we used on the photos,
+except we just have to account for the left margin, in this minimalistic design.
+
+To add a better font to our page we go to google fonts 
+and select "Raleway" with a weight of 800 (extra bold)
+
+We paste this into the head of our html doc:
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap" rel="stylesheet">
+
+And add this rule to our nav in the css file:
+font-family: 'Raleway', sans-serif;
+
+We finish by adding some more rules to our nav in the css file:
+nav {
+    width: 30%;
+    margin-left: calc(10%/6);
+    font-size: 1.5em;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    padding: 1.2em 0;
+    border-bottom: 2px solid #eee;
+}
+
+NOTE: Colt briefly goes over the way the images were formatted in the html
+document and why its important to this page we created.
+
+Below is the html that Colt supplied for this demo:
+<!-- Massimo Margagnoni -->
+<img src="http://c1.staticflickr.com/9/8450/8026519634_f33f3724ea_b.jpg"><img
+    src="http://c2.staticflickr.com/8/7218/7209301894_c99d3a33c2_h.jpg"><img
+    src="http://c2.staticflickr.com/8/7231/6947093326_df216540ff_b.jpg">
+
+The way one might naturally assume to add the images might be like so:
+<!-- Massimo Margagnoni -->
+<img src="http://c1.staticflickr.com/9/8450/8026519634_f33f3724ea_b.jpg">
+<img src="http://c2.staticflickr.com/8/7218/7209301894_c99d3a33c2_h.jpg">
+<img src="http://c2.staticflickr.com/8/7231/6947093326_df216540ff_b.jpg">
+
+But if we do it this way whitespace is created between each of the photos and this
+would destroy our beautifully symmetrical grid that we created in the photo blog page. 
+
+
+################################################### SECTION 10 ###################################################
+-------------------------------------------------------------------------------------------------------------
+4/2/23: 9am-3pm (with breaks in between)
+
+Responsive CSS & Flexbox
+
+Colt's Advice: "Focus on the concepts, not memorizing the properties!"
+
+Flexbox
+(A one-dimensional layout method for laying out items in rows or columns)
+
+gpt:
+(a layout technique that arranges items in either rows or columns along a single axis)
+
+Flexbox allows us to distribute space dynamically across elements of an unknown size.
+
+We start with a section containing 5 divs that are just colored squares. Without any 
+display properties, the divs are laid out as a column on the left side of the section.
+
+To start using flexbox we set the display to 'flex':
+section {
+    background-color: #003049;
+    width: 90%;
+    height: 500px;
+    margin: 0 auto;
+    display: flex;
+}
+
+This will change the layout and behavior of the elements in this section.
+The divs that were once a staic column, are now a dynamic row.
+
+The Flex Model
++-----------------------+
+|     |                 |
+|     |       Main Axis |
+|-----+-----------------|
+|     |                 |
+|     | Cross Axis      |
++-----------------------+
+
++Flex-Direction
+(lets us decide the main axis direction in our container)
+
+Default value is (flex-direction: row) which will be left to right.
+Its possible to change the direction from right to left with (flex-direction: row-reverse)
+
+We can also change the main axis to (flex-direction: column) which will be top to bottom.
+Its possible to change the direction from bottom to top with (flex-direction: column-reverse)
+
++Justify Content
+(determines how the elements/content are distributed across the main axis)
+
+default is (justify-content: flex-start)
+The tricky thing here is that it depends on where our main axis starts.
+So, if the main axis goes from left to right, then the start is on the left.
+
+Example:
+If we have (flex-direction: row) and (justify-content: flex-start),
+our divs will be on the start from the left hand side going left to right.
+|1|2|3| | | 
+
+But if we set (justify-content: flex-end), it will start on the right side,
+going from left to right.
+| | |1|2|3|
+
+Another option is (justify-content: center), which will center the content along the main axis.
+| |1|2|3| |
+
+Some options will add padding between elements.
+
+(justify-content: space-between) will create padding between elements, 
+but exclude padding between the element and the container(no padding on the sides).
+
+(justify-content: space-around) will give each element the same amount of space around it,
+which means the space between an element and container will be different than the space between elements.
+
+(justify-content: space-evenly) will give each element the same space between other elements
+as well as the container that holds them.
+
++Flex Wrap
+(determines whether our elements are going to wrap along the main axis onto a new line (if horizontal),
+or a new column (if vertical))
+
+If we have (flex-direction: column) 
+|x|
+|x|
+|x|
+|x|
+
+and we set (flex-wrap: wrap), we get this(depending on the size of the element vs container): 
+|x|  |x|
+|x|  |x|
+
+The same principles apply to elements that have (flex-direction: row)
+without wrap:
+|x|x|x|x|
+
+with wrap:
+|x|x|
+|x|x|
+
++Align Items
+(distributes space in items along the cross axis)
+
+justify-content = along the main axis
+align-items = along the cross axis
+
+(align-items: flex-start) will align along the beginning of the cross axis
+
+(align-items: flex-end) will align along the end of the cross axis
+
++Align Content
+(distributes space along the cross axis, when there are multiple rows/columns)
+
+(align-content: space-between) if rows, controls space between rows. 
+if columns, controls space between columns. 
+
+(align-content: flex-start) will align along the beginning of the cross axis
+
+(align-content: flex-end) will align along the end of the cross axis
+
+NOTE: must have some version of (flex-wrap: wrap) for align-content to do anything.
+
++Align Self
+(similar to align items except its a property thats added to individual items in a flex container)
+
+So, you could have all of your items aligned to flex-start, but have one that deviates
+and have it set to flex-end.
+|x|x| |x|x| <-- (align-items: flex-start)
+| | |x| | | <-- (align-self: flex-end)
+
+
+Flex Sizing Properties
+
++Flex-Basis
+(defines the initial size of an element before additional space is distributed)
+
++Flex-Grow
+(controls the amount of available space an element should take up. accepts a unit-less number value)
+
++Flex-Shrink
+(if items are larger than the container, they shrink according to flex-shrink)
+
+NOTE: refer to video 108 for effective examples.
+
+Flex Shorthand
+(sets how a flex item will grow or shrink to fit the space available in its flex container)
+
+This property is shorthand for flex-grow, flex-shrink, and flex-basis.
+
+from MDN:
+/* One value, unitless number: flex-grow
+flex-basis is then equal to 0. */
+flex: 2;
+
+/* One value, width/height: flex-basis */
+flex: 10em;
+flex: 30%;
+flex: min-content;
+
+/* Two values: flex-grow | flex-basis */
+flex: 1 30px;
+
+/* Two values: flex-grow | flex-shrink */
+flex: 2 2;
+
+/* Three values: flex-grow | flex-shrink | flex-basis */
+flex: 2 2 10%;
+
+NOTE: refer to video 109 for effective examples.
+
+-------------------------------------------------------------------------------------------------------------
+4/3/23: 530pm-6pm
+
+Responsive Design
+
+With responsive design, we can create one website and use one stylesheet
+that is able to respond to different device sizes and features.
+
+Media Queries
+(allow us to modify our styles depending on particular parameters like screen width or device type)
+
+Example:
+if (phone in portrait mode):
+    do this;
+else:
+    do that;
+
++Media Features
+(describe specific characteristics of the user agent, output device, or environment)
+
+Basic definition: The thing that allows us to make a responsive website.
+
+this could include:
+-width, height
+-grid
+-hover
+-inverted colors
+(to name a few)
+
+Syntax:
+@media (media features){
+    css selector {
+        css: rule;
+    }
+}
+
+Example:
+if the screen width is 800px turn div font red...
+@media (width: 800px){
+    div {
+        color: red;
+    }
+}
+
+More specifically, the width refers to the polygonal area in 
+computer graphics that is currently being viewed,
+(or the screen if the doc is being viewed in full screen mode).
+
+-------------------------------------------------------------------------------------------------------------
+4/4/23: 8pm-10pm
+
+this will change the color of our h1 to purple if the 
+width is between 600 and 800 px.
+@media (min-width: 600px) and (max-width: 800px){
+    h1 {
+        color: purple;
+    }
+}
+
+Building A Responsive Navbar:
+the objective is to take the Home and SignUp links and put them on each side of the document,
+and simultaneously center the other three links.
+
+To start we set the display in our nav(which holds all the links) to flex,
+and set justify-content to space-between
+nav {
+    font-size: 1.5em;
+    display: flex;
+    justify-content: space-between;
+}
+
+This works initially with space-between (since there are only 3 seperate elements), 
+but there are problems when it comes to different screen sizes.
+
+It is possible and a common practice to nest a flexbox within another flexbox, like so:
+ul {
+    border: 1px solid black;
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+Next we want to set all the links to be in a row once the display is < 768px:
+@media(max-width: 768px){
+    h1 {
+        font-size: 4em;
+    }
+
+    /* we select the nav as well as the ul in the nav */
+    nav, nav ul {
+        flex-direction: column; /* for main axis */
+        align-items: center;    /* for cross axis */
+    }
+}
+
+################################################### SECTION 11 ###################################################
+-------------------------------------------------------------------------------------------------------------
+4/5/23: 8am-930am
+
+
+Pricing Panel CodeAlong
+
+CSS Tools: Reset CSS
+The goal of a reset stylesheet is to reduce browser inconsistencies in things like 
+default line heights, margins and font sizes of heading and so on.
+
+A CSS reset is a set of CSS rules that are designed to remove or "reset" the default 
+styling provided by web browsers. This is done to create a consistent starting point 
+for styling web pages across different browsers and platforms.
+
+By using a CSS reset, developers can avoid unexpected variations in the appearance of 
+their web pages caused by differences in the default styles provided by different browsers. 
+This allows them to have more control over the look and feel of their pages, 
+and to create a more consistent user experience for their visitors.
+
+We will be styling a simple pricing panel that consists of:
+-body
+-div (that holds 3 individual divs)
+-individual divs that hold:
+    -ul
+    -and 2 li's
+
+We set a nice blue background color and a google font, as well as a border-box:
+html {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif; 
+}
+
+Body:
+body {
+    background-color: #60a9ff;
+}
+
+We set the body to flex, and center it (main and cross axis):
+display: flex;
+justify-content: center;
+align-items: center;
+
+we also set the min viewport height to 100:
+min-height: 100vh;
+
+
+Panel Class:
+We use our panel class to acess the "main" div, and set background color to white:
+.panel {
+    background-color: white;
+}
+
+We add a few more rules to our panel class selector:
+border-radius: 10px;
+padding: 15px 25px; (vertical, horizontal)
+width: 100%; (of parent)
+max-width: 960px;
+
+As we continue with the styling, the decsion is made to style the mobile aspect first,
+we start this by setting the panel class to flex, and the flex direction to column:
+display: flex;
+flex-direction: column;
+
+We also center the text in the panel, and set all caps:
+text-align: center;
+text-transform: uppercase;
+
+Pricing Plan Class:
+The individual divs within the main div (panel class) have a class of their own.
+
+We access them via class:
+.pricing-plan {
+    da: rules;
+}
+
+And add a basic border:
+border-bottom: 1px solid #e1f1ff;
+
+To remove the border from the last pricing plan div, 
+we access it with the last-child selector (within our pricing plan class):'
+
+.pricing-plan:last-child {
+    border-bottom: none;
+}
+
+We now add a bit of margin to the images and select them via class:
+.pricing-img {
+    margin-bottom: 25px;
+    max-width: 100%;
+}
+
+-------------------------------------------------------------------------------------------------------------
+4/6/23: 10am-1230pm
+
+We will now focus on some of the typography elements of the panel:
+
+We'll start by accessing our pricing header class, and adding some basic rules:
+.pricing-header{
+    color: #888;
+    font-weight:  600;
+    letter-spacing: 1px;
+}
+
+We will now add some rules to the pricing features class (which consists of 2 ul's):
+.pricing-features {
+    margin: 50px 0 25px; /* top sides bottom */
+    color: #016ff9;
+}
+
+Then we select the the list items directly and add some rules:
+.pricing-features-item {
+    font-weight:  600;
+    letter-spacing: 1px;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 15px 0; /* vertical horizontal */
+}
+
+We also add a border to the bottom of the last child (.pricing-features-item):
+.pricing-features-item:last-child {
+    border-bottom: 1px solid #e1f1ff;
+}
+
+We'll now add some style to the span in our main div:
+.pricing-price {
+    color: black;
+}
+
+Next we will do some work on the button:
+.pricing-button {
+    border: 1px solid #9dd1ff;
+    border-radius: 10px;
+    color: #348efe;
+    display: inline-block;
+    padding: 15px 35px; /* y, x */
+    margin: 25px 0; /* y, x */
+    text-decoration: none;
+    transition: background-color 200ms ease-in-out;
+}
+
+And add a simple hover effect (background color change):
+.pricing-button:hover {
+    background-color: #e1f1ff;
+}
+
+There is a button in a class of its own that will get its own styling:
+.pricing-button.is-featured {
+    background-color: #48aaff;
+    color: white;
+}
+
+.pricing-button.is-featured:hover, .pricing-button.is-featured:focus {
+    background-color: #269aff;
+    color: white;
+}
+
+With that that mobile styling is complete, and no we will focus on the web version
+as well as making the entire page responsive.
+
+
+If the display is less than 960px we will set the flex direction to row
+@media (min-width: 960px) {
+    .panel {
+        flex-direction: row;
+    }
+    /* we will remove the border present when in row, and add a border on the right, and padding */
+    .pricing-plan {
+        border-bottom: none;
+        border-right: 1px solid #e1f1ff;
+        padding: 25px 50px;
+    }
+    /* we remove the now unnecessary border on the right  */
+    .pricing-plan:last-child {
+        border-right: none;
+    }
+}
+
+And thats it! Pricing Panel is done!
+
+################################################### SECTION 12 ###################################################
+-------------------------------------------------------------------------------------------------------------
+4/??/23: 
+
+Bootstrap
+
+"The worlds most popular CSS framework"
+
+################################################### SECTION 13 ###################################################
+-------------------------------------------------------------------------------------------------------------
+4/??/23: 
+
+Museum Of Candy Project 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+h1{
+    color: palegreen;
+    background-color: paleturquoise;
+}
+
+h2 {
+    color: palevioletred;
+}
+
+button {
+    color: paleturquoise;
+    background-color: palegoldenrod;
+    border-color: aqua;
+}
+
+p {
+    color: #005500;
+    background: rgb(89, 151, 0)
+}

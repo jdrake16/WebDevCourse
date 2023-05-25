@@ -1,0 +1,110 @@
+
+/* by element */
+body {
+    background-color: #E4C988;
+}
+
+/* by element */
+button {
+    background-color: #84D2C5;
+}
+
+/* by id */
+#signup {
+    background-color: #C27664;
+}
+
+/* mulitple elements */
+h1, h2 {
+    color: #C27664;
+}
+
+/* by element */
+span {
+    color: #B05A7A;
+    font-weight: bold;
+}
+
+/* by class */
+.tag {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 22px;
+}
+
+/* descendant selector */
+span a {
+    color: #C27664;
+}
+
+/* descendant and class */
+.post button {
+    color: #B05A7A;
+    border-color: #B05A7A;
+}
+
+/* descendant with multiple elements */
+footer ul,a{
+    color: #B05A7A;
+}
+
+/* descendant with id */
+nav #search {
+    color: #C27664;
+}
+
+/* adjacent selector */
+h2 + button {
+    font-size: 15px;
+}
+
+/* direct descendant */
+footer > a {
+    color: #C27664;
+}
+
+/* attribute selector */
+input[type="password"]{
+    color: #B05A7A;
+}
+
+/* hover effects for all buttons in the post class */
+.post button:hover{
+    background-color:#C27664;
+}
+
+/* "pressed-on" effect */
+button:active{
+    border-color: #84D2C5;
+}
+
+/* element+class+hover */
+a.user:hover{
+    color:#B05A7A;
+}
+
+/* select every other section in .post class with nth of type  */
+.post:nth-of-type(2n) {
+    background-color:#84D2C5;
+}
+
+/* select the first letter if every h2 */
+h2::first-letter{
+    color: #B05A7A;
+}
+
+/* selecting the paragraph by element */
+p {
+    color:#C27664;
+}
+
+/* selecting the first line of text in a paragraph */
+p::first-line{
+    color: #B05A7A;
+}
+
+/* select any highlighted part of the doc */
+::selection{
+    color: white;
+}
+
+

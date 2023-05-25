@@ -1,0 +1,892 @@
+The Web Developer Bootacamp 2023 by Colt Steele
+
+2/27/23: start 7pm, end 930pm
+
+Section 1:
+Course Orientation(section complete)
+
+################################################### SECTION 2 ###################################################
+An Introduction To Web Development
+
+What is the internet?
+A global network of networks (a bunch of connected computers)
+
+we can connect with other devices via Routing
+
+ip address = internet protocol address
+
+The Internet is the infrastructure that carries things like:
+- email
+- the web 
+- file sharing
+- online gaming
+- streaming services
+
+infrastructure : the basic physical and organizational structures and facilities 
+(e.g. buildings, roads, power supplies) needed for the operation of a society or enterprise:
+
+What is the World Wide Web?
+The world wide web is an information system where documents and 
+other resources are available over the internet.
+Doucuments are transferred via HTTP
+
+URL: uniform resource locators
+
+HTTP: hyper text transfer protocol
+
+http requests - foundation of communication of the WWW
+requests: I would like some information
+response: Ok, here ya go
+
+Server: A computer that can satisfy requests on the web, 
+"server" is also used to refer to the software running on the computer.
+
+Client: The compter that accesses a server.
+
+Simple breakdown of the languages used in web dev:
+HTML - the noun
+Css - the adjective
+JavaScript - the verb
+
+Setting Up The Developer Environment:
+Chrome and VsCode are strongly recommened
+
+################################################### SECTION 3 ###################################################
+HTML The Essentials
+
+HTML is a markup language (hyper text markup lanaguage)
+
+HTML Elements:
+To write HTML, we pick from a set of standard Elements that all browsers recognize.
+Common Elements include:
+- <p> : paragraph or text
+- <h1> : the main header on a page
+- <img> : embeds an image
+- <form> : represents a form
+
+VsCode Shortcuts for HTML:
+b + tab = bold tag
+p + tab = paragraph tag
+h1 + tab = h1 heading
+h2 + tab = h2 heading
+
+Resource:
+Mozilla Developer Network - A resource for covering the basics of web technologies.
+In the MDN, a section called the HTML Element reference has a list of relevant elements.
+
+Paragraph
+The paragraph element <p></p> will emphasize a separation in different sections of the page.
+
+Headings
+When using headings on a page, in should only include one <h1></h1> element (the big one).
+Can't skip to certain h tags (cant have an h4 without an h3)
+
+Although by default, headings have different sizes (h1 being the largest), the point of them 
+is to add structure to the page, and to indicate the main topic, sub-topic etc.
+-------------------------------------------------------------------------------------------------------------
+2/28/23: start 9pm, end 11pm
+Introduction To The Chrome Inspector
+
+Browser inspector:
+When in a web browser on any page, right-click any where on the page and select "inspect"
+to view that pages HTML.
+
+Boilerplate HTML
+Standardized markup that needs to go in every HTML page.
+
+<!DOCTYPE html>
+Lets the browser know you are using HTML5. Has no closing tag.
+
+<html>
+HTML element, or the root element, represents the top-level element of an HTML document.
+The entirety of the html should be enclosed within this tag, excluding the DOCTYPE flag.
+
+<title>
+The title element corresponds to the title of the web page 
+that appears in the URL/Browser(not in the page).
+
+<head>
+The document metadata element, contains machine-readable information(metadata) about the 
+document, like its title, scripts, and style sheets. 
+
+<body>
+Represents all the content in the HTML document. One body, one head only.
+
+The Boilerplate structure:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            ChickenGood
+        </title>
+    </head>
+    <body>
+        content goes here!
+    </body>
+</html>
+
+Shortcut in VsCode to create this Boilerplate:
+! + tab
+
+Auto Formatting Our HTML in VsCode
+1. open the command palette (ctrl + shift + p)
+2. type "format document"
+OR
+run the shortcut (shift + alt + f) 
+
+List Elements
+<ul>
+Unordered lists (bullet point)
+
+<ol>
+Ordered lists (numbered)
+
+<li>
+List item, inside either of these tags one will find this element
+
+Tip: to quickly create multiple list items with a ul, or ol,
+while on a line that is to be duplicated use the command
+shift + alt + down (or up)
+
+The List structure:
+<h2>Breeds</h2>
+<ul>
+    <li>Silkie</li>
+    <li>Polish</li>
+</ul>
+
+To switch this from a bullet list to an numbered list, change the <ul> tag to <ol>
+
+It is also possible to nest a list within a list item element, like so:
+
+The Anchor Element
+<a>
+VsCode shortcut: a + tab
+With its href attribute, creates a hyperlink to web pages, files, email addresses, or
+locations within the same page, etc.
+
+The anchor element with a link:
+<a href="http://www.Itch.io">THIS IS A LINK!</a>
+
+Can also use this to link another HTML file:
+<a href="about.html">About the author</a>
+
+-------------------------------------------------------------------------------------------------------------
+3/1/23: start 830pm, end 10pm
+
+The Image Embed Element
+<img src="location of image">
+does not have an opening and closing tag
+
+The location of the image should be in the same dir that contains the HTML,
+but you can also use an image from the web by right-clicking on it and selecting
+"copy image link" in Edge or "copy image address" in Chrome
+
+If you decide to keep the images in a seperate dir on your machine, 
+you must provide the path to that folder as well as the filename.
+like so:
+<img src="images/chickenz.png">
+
+Using the alt attribute, we can add a description of the image for accessibility reasons,
+or if the the image fails to load for whatever reason a description of that image will remain.
+NOTE: there are rules for when you should and shouldnt use the alt attribute.
+<img src="chickenz.png" alt="Two handsome chickens dickin around.">
+
+Comments in HTML
+<!-- this is an HTML comment -->
+In VsCode, to comment the current line use the command:
+ctrl + /
+
+################################################### SECTION 4 ###################################################
+HTML: Next Steps & Semantics
+
+What is HTML5?
+The latest evolution in the standard that defines HTML.
+
+The HTML standard is a document that describes how HTML should work.
+
+The standard describes the rules of HTML, but browsers actually have to do the work
+and implement HTML according to those rules.
+
+Inline and Block Elements
+inline: fit in alongside other Elements
+block: take up a whole "block" of space
+
+<div> 
+The content division element (block  level element),
+is a generic container for flow content.
+
+<div>
+    <a href="http://www.Itch.io">THIS IS A LINK!</a>
+    <a href="about.html">About the author</a>
+</div>
+
+By putting these links (anchor elements) inside of a div tag,
+they will now take up their own "block" in the document.
+
+<span>
+A generic inline container for phrasing content.
+
+This can single out a word (or a string) that can later be styled seperately from other
+words in a sentence.
+<a href="about.html">About the <span>author</span></a>
+
+-------------------------------------------------------------------------------------------------------------
+3/2/23: start 11pm, end 12pm
+
+Random Elements
+
+<hr> (horizontal rule)
+Represents a thematic break between paragraph-level elements: 
+for example, a change of scene in a story, or a shift of topic within a section.
+Basically a divider(a line).
+
+<br>
+Produces a line break in text. Useful for writing a poem or an address,
+where the division of lines is significant.
+
+<h2>
+    Feathered friends so fine, <br>
+    Scratching, pecking, clucking free, <br>
+    Eggs laid in the hay. <br>
+</h2>
+
+without the <br> elements in the haiku above,
+the line breaks would be ignored and the text 
+would appear as a normal sentence.
+
+<sub>
+The subscript element specifies inline text which should be displayed as 
+subscript for solely typographical reasons. subscripts are typically rendered
+with a lowered baseline using smaller text. (for writing molecules)
+Example:
+I like H<sub>2</sub>0
+
+<sup>
+The superscript element specifies inline text which should be displayed as 
+superscript for solely typographical reasons. superscripts are are typically rendered
+with a raised baseline using smaller text. (for writing exponents)
+Example
+2*2 = 2<sup>2</sup>
+
+these can both be used to create better looking fractions, like so:
+<sup>1</sup>/<sub>2</sub>
+
+HTML Entities
+A collection of different characters with codes assigned to them.
+Some of these characters include the copyright symbol, card symbols, a less than/greater than symbol,
+an ampersand, etc.
+Example:
+< = &lt;
+> = &gt;
+& = &amp;
+NOTE: the reason we would use these entities, is that these characters are
+reserved in HTML, and utilizing the character itself may lead to potential issues.
+
+-------------------------------------------------------------------------------------------------------------
+3/7/23: start 1030pm - 12am
+Semantic Markup
+
+Semantic: realting to meaning.
+"what purpose does that html element have"
+Therefore, Semantic Markup = meaningful markup.
+
+In this section Colt reviews the markup on 2 websites.
+One website is structured using mostly <div> elements,
+the other uses Semantic Markup to organize the structure
+of the markup more clearly. 
+
+Including elements such as:
+<main>, <section>, <article>, <nav>, <section>, 
+<header>, <footer>, <aside>, <summary>, <details>
+
+These elements behave just like <div>'s, the difference is
+that they have meaning!
+
+Semantic Markup: 
+- can also be used for accessibility reasons.
+A screen reader can use them as hooks (can ask for the footer of the page, etc.)
+- can be used to make your markup more navigable to yourself and other developers
+- will make your markup more crawlable(for search engines)
+- essential for SEO (search engine optimization)
+
+<main>
+represents the dominant content in the <body> of a document.
+should exclude content that is repeated across a set of a documents sections
+such as, sidebars, navigation links, copyright information, site logos, and search forms.
+
+<nav>
+represents a section of a page whose purpose is to provide navigation links
+either within the current document or to other documents.
+Screen readers will look for these elements and call them out.
+
+<section>
+represents a standalone section that does not have a more specific 
+semantic element to represent it.
+
+<article>
+represents a self-contained composition in a document, which is intended to 
+be independently distributable or reusable; 
+a forum post, a magazine or newspaper article, or blog entry.
+
+<aside> 
+represents a portion of the document whose content is only indirectly related
+to the documents main content;
+sidebars or call-out boxes.
+
+<header> 
+represents introductory content, typically a group of introductory or navigation aids.
+May contain heading elements, logos, search forms, authors name, etc.
+
+<footer>
+represents a footer for its nearest sectioning content or sectioning root element.
+Typically contains information about the author, copyright data or links to related documents.
+
+<figure>
+represents self-contained content potentially with an optional caption,
+which is specified using the <figcaption> element.
+
+-------------------------------------------------------------------------------------------------------------
+3/8/23: start 130pm - 230pm and 8pm - 930pm
+
+Emmet:
+Tool for creating HTML elements on the fly.
+
+Child: >
+Example - main>section>h1 (yields):
+<main>
+    <section>
+        <h1></h1>
+    </section>
+</main>
+
+Sibling: + 
+Example - h1+h1+h2 (yields):
+<h1></h1>
+<h1></h1>
+<h2></h2>
+
+Multiplication: *
+Example - ul>li*5 (yields):
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+Item Numbering: $
+Example - ul>li.item$*3 (yields):
+<ul>
+    <li class="item1"></li>
+    <li class="item2"></li>
+    <li class="item3"></li>
+</ul>
+
+
+Other Examples:
+nav>ul>li*3>a (yields):
+<nav>
+    <ul>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+    </ul>
+</nav>
+
+################################################### SECTION 5 ###################################################
+Forms & Tables
+
+TABLES
+Structured sets of data, made up of rows and columns.
+Great way of displaying data clearly.
+
+<table>
+represents tabular data; 
+information presented in a two-dimensional table comprised of rows and columns containing data.
+
+<td>
+defines a cell of a table that contains data.
+
+<tr>
+defines a row of cells in a table.
+
+<th>
+defines a cell as a header of a group of table cells
+
+<thead>
+defines a set of rows defining the head of the columns of the table.
+
+<tbody> encapsulates a set of table rows (<tr> elements), indicating that they 
+comprise the body of the table.
+
+<tfoot> 
+defines a set of rows summarizing the columns of the table.
+
+The table structure using the elements above:
+<h1>Heaviest Birds</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Animal</th>
+        <th>Average Mass</th>
+        <th>Flighted</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td>Wild Turkey</td>
+        <td>13.5(29.8)</td>
+        <td>Yes</td>
+    </tr>
+    </tbody>
+</table>
+
+A second version of this table makes the information more conscise
+by putting the KGs and LBs their own columns
+<thead>
+    <tr>
+        <th rowspan="2">Animal</th>
+        <th colspan="2">Average Mass</th>
+        <th rowspan="2">Flighted</th>
+    </tr>
+    <tr>
+        <th>KG</th>
+        <th>LB</th>
+    </tr>
+</thead> 
+
+-------------------------------------------------------------------------------------------------------------
+3/9/23: start 11am - 330pm and 8pm - 10pm
+
+FORMS
+A shell container that doesnt have any visual impact but can be filled
+with a collection of inputs, checkboxes, buttons, etc.
+
+The action attribute specifies where the form data should be sent.
+The method attribute specifies which HTTP method should be used.
+
+<form action=""></form>
+
+The action attribute allows for navigation to specific sections of a website. 
+For instance, on Reddit, users can utilize the search form to find different forums, 
+with the corresponding action appearing as: 
+action="/search"
+
+The other part to this search would be what the user is searching for.
+If the user searches "Silkie", the q or query would be for chickens.
+And in the browsers navigation bar the URL would look like:
+reddit.com/search/?q=silkie
+
+Form Child elements
+<input>
+used to create interactive controls for forms in order to accept data from the user.
+a variety of different form controls.
+there are many types of inputs ranging from date pickers to checkboxes.
+the type attribute alters the inputs behavior and appearance.
+
+By default, the type will be text.
+<input type="text">
+
+We can specify other types like so:
+<input type="time">
+<input type="button">
+
+We can also add placeholder text for certain input types:
+<input type="password" placeholder="password">
+
+<label>
+represents a caption for an item in a user interface.
+important for form functionality and accessibility.
+
+Lables can be linked to inputs, by using two attributes:
+for and id
+
+So on the label end we set the "for" attribute
+<label for="bass">Do you like bass?</label>
+
+And on the input side, we set the "id" attribute
+<input type="checkbox" name="bass inquiry" id="bass">
+
+It is also possible to nest the input inside of a label,
+this eliminates the need for the "for" and "id" attributes.
+However, it is less common to take this approach.
+<label>
+    Enter a username:
+    <input type="text" placeholder="username">
+</label>
+
+<button>
+represents a clickable button, used to submit forms.
+
+The default behavior for a button inside a form 
+is to submit that form when clicked.
+
+Can also use another input type in place of the button called submit.
+<input type="submit">
+by default, it will have submit as the text on the button, 
+and will also submit a form that it resides in.
+
+If you want to change the text for a submit type, use the value attribute:
+<input type="submit" value="click me!">
+
+Name (attribute)
+This attribute resides in an input element,
+and is used to refer to the value (of an input) 
+when the data is sent to the server.
+
+If we give all of the input elements a name attribute and then submit,
+the result is:
+file:///C:/credentials?un=bob&ps=420&n=69&c=%2300ff04
+
+The names provided for these input elements were:
+username = un
+password = ps
+number = n
+color = c
+
+And as we can see in the request, those name attributes are all listed.
+
+Exercise:
+Hijacking Google and Reddits search
+
+We can add a form to our HTML that will use reddits search action,
+as long as we use the same name attribute that is specified 
+in reddits request query (in the URL).
+<form action="https://www.reddit.com/search">
+    <input type="text" name="q">
+    <button>Search Reddit</button>
+</form>
+
+We can do the same using Bings search action.
+<form action="https://www.bing.com/search">
+    <input type="text" name="q">
+    <button>Search Bing</button>
+</form>
+
+Youtube uses a different format has the same functionality.
+The difference being /results as the action attribute, 
+and search_query as the name attribute.
+<form action="https://www.youtube.com/results">
+    <input type="text" name="search_query">
+    <button>Search Youtube</button>
+</form>
+
+Checkbox
+In order to trigger the TermsOfService action (for the example below),
+the user must check the checkbox and then click the submit button.
+And if we do it will set agree_tos to "on" (as visible in the URL).
+<form action="/TermsOfService">
+    <input type="checkbox" name="agree_tos" id="agree">
+    <label for="agree">I agree to everything</label>
+    <button>Submit</button>
+</form>
+
+-------------------------------------------------------------------------------------------------------------
+3/11/23: start 4pm - 5pm and 9pm - 10pm
+
+RadioButton
+Similar to a checkbox, however, only one radio button 
+in a given group can be selected at a time.
+Each individual radio button should have its own unique id,
+but the name attribute for those items should be the same (name acts as a group) 
+but to use the selected radio button choice, an addition
+attribute called "value" is required.
+Here we have an example of how to use radio buttons to select a shirt size.
+<form action="/shirt_size">
+    <label for="s">S</label> 
+    <input type="radio" name="size" id="s" value="small">
+    <label for="m">M</label>
+    <input type="radio" name="size" id="m" value="medium">
+    <label for="l">L</label>
+    <input type="radio" name="size" id="l" value="large">
+    <button>Sumbit Size</button>
+</form>
+
+Select
+Represents an input that provides a menu of options (a drop down menu).
+This element works together with the option element, serving as the parent
+to the option element that essentially groups together some options.
+
+Option
+Child of the select element, each having a unique value.
+Option element does not require a label, as it can be labeled directly.
+<form action="/pet_choice">
+    <label for="">Select your favorite Pet</label>
+    <select name="pets" id="fav_pet">
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="bird">Bird</option>
+    </select>
+    <button>Submit Choice</button>
+</form>
+
+Range
+Lets the user specify a numeric value which must be no less than a given value
+(a slider bar).
+<form action="/cheese_amount">
+    <label for="cheese">Amount Of Cheese:</label>
+    <input type="range" name="cheese_level" id="cheese" min="1" max="10" value="0">
+    <button>Submit Level</button>
+</form>
+
+Number
+Lets the user choose a number, a range of numbers can be specified.
+<form action="/rate_dish">
+    <label for="rating">Rate Tonights Special Dish</label>
+    <input type="number" placeholder="Rate Dish" name="num" id="rating" min="1" max="5" value="1">
+    <button>Submit Rating</button>
+</form>
+
+TextArea (not an input)
+Represents a multi-line plain text editing control, useful for comments/feedback.
+<form action="/requests">
+    <label for="comment">Any Special requests?</label> <br>
+    <textarea name="requests" id="comment" cols="30" rows="10" placeholder="type requests"></textarea>
+    <button>Submit</button>
+</form>
+
+NOTE: I have separated these different types of inputs into their own respective forms,
+but in the videos, 
+Colt has them all in the same form and simply separates them with paragraph elements <p>.
+
+-------------------------------------------------------------------------------------------------------------
+3/12/23: start 10am - 11am and 11pm to 12:20am
+
+Validations
+A constraint for validating user input.
+This could be something along the lines of requiring certain fields to be 
+filled out or requiring that a password has a speecial character in it.
+
+Required (attribute)
+Indicates that the user must specify a value for the input before 
+the owning form can be submitted.
+
+In this example, we simply add the required attribute to 
+indicate that the first name must be filled out.
+<form action="/validate">
+    <label for="">Enter First Name</label>
+    <input type="text" name="first" id="first" required>
+    <button>Submit</button>
+</form>
+
+We can also add a username field that requires the username to be a certain length. 
+<p>
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" minlength="5" maxlength="20" required>
+</p>
+
+Pattern (attribute)
+Specifes a regular expression that the forms control value should match.
+
+This email input comes with a default pattern, 
+which means that the user must include an @ symbol followed by more text,
+(this is not actually verifying that the email is real but that it follows a certain pattern)
+<p>
+    <input type="email" required>
+</p>
+
+-------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+

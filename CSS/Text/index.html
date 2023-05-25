@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>CSS Color</title>
+</head>
+
+<body>
+    <h1>Color in CSS</h1>
+    <p>
+        CSS
+        Cascading Style Sheets:
+        A lanaguage for describing how documents are presented visually,
+        how they are aranged, and how they are styled.
+    </p>
+
+    <p>
+        CSS rules:
+        This is a basic pattern that is followed throughout CSS: <br>
+        selector {
+        property: value;
+        }
+    </p>
+
+    <p>
+        Example:
+        Make all H1 elements on a page purple: <br>
+        h1 {
+        color: purple;
+        }
+    </p>
+
+    <p>
+        Make all image elements 100 pixels wide & 200 pixels tall: <br>
+        img {
+        width: 100px;
+        height: 200px;
+        }
+    </p>
+
+
+    <p>
+        Select every other text input and give it a red border: <br>
+        input[type="text"]:nth-of-type(2n){
+        border: 2px solid red;
+        }
+    </p>
+
+    <h2>Including Styles</h2>
+    <p>
+        Inline Styles:
+        writing styles directly inline on each element (generally considered a bad practice)
+    </p>
+
+    <p>
+        This approach is not recommened because it only applies to the element its written in.
+        If you wanted to add multiple buttons and have them styled the same, you would have to
+        add that "style" line to each button individually. Also you would not be able to share these
+        styles between documents(different pages of the website).
+    </p>
+
+    <p>
+        The style Element: The Style Element can be used inside of the head element in an HTML document. This approach
+        is much better than using inline styles however,
+        you still cant share styles between documents. In this example,
+        we set a rule to change the colors of all H2's.
+    </p>
+
+    <p>
+        External Stylesheet
+        Write your styles in a .css file then include using a
+        link element in the head of the HTML document. (Recommened)
+    </p>
+
+    <p>
+        And in the css file: <br>
+        h1{
+        color: palegreen;
+        }
+    </p>
+
+
+    <h3>Color Property</h3>
+    <p>
+        Sets a rule for text color.
+        There are many ways to specify color.
+        some examples include:
+        color: purple
+        color: #00ff00;
+        color: rgb(214, 122, 127)
+    </p>
+
+    <p>
+        Named Colors:
+        Easy to use but is the most limited set.
+        All browser recognize 140 named colors (these are constants).
+    </p>
+
+    <p>
+        RGB Colors:
+        An additive color model in which red, green, and blue light are added
+        together in various ways to reproduce a broad array of colors.
+    </p>
+
+    <p>
+        There are red, green, and blue channels. Each channel ranging from 0-255 (0 being off) <br>
+        red = rgb(255, 0, 0) <br>
+        green = rgb(0, 255, 0) <br>
+        blue = rgb(0, 0, 255) <br>
+        purple = rgb(173, 20, 219) <br>
+        black = rgb(0, 0, 0) <br>
+    </p>
+
+    <p>
+        HEX Colors:
+        Also comprised of red, green, and blue channels with a range of 0-255,
+        but represented with a hexadecimal.
+    </p>
+
+    <p>
+        The hexadecimal range: <br>
+        least light(0) 0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F most light(255) <br>
+        red = #ff0000; green = #00ff00; blue = #0000ff; <br>
+        Tip: If your hexcode features all of the same numbers #0011ff it can be shortened to #01f
+    </p>
+
+</body>
+
+</html>

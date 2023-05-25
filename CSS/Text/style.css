@@ -1,0 +1,35 @@
+body{
+    background-color: blueviolet;
+}
+
+h1 {
+    text-align: center;
+    text-decoration:pink underline;
+    letter-spacing: 4px;
+    font-size: 60px;
+}
+
+h2 {
+    text-decoration: palegreen underline;
+    font-size: 40px;
+}
+
+h3 {
+    text-decoration: palegoldenrod underline;
+    font-size: 40px;
+}
+
+p {
+    background-color: palevioletred;
+    font-weight: bold;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+
+
+
+
+

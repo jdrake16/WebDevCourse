@@ -1,0 +1,15 @@
+section {
+    width: 80%;
+    height: 500px;
+    /* background-image: url("cloud_crop2.png");
+    background-size: cover; */
+    background: center/cover url("cloud_crop2.png");
+    margin:200px auto;
+}
+
+h1 {
+    font-size: 100px;
+    color: white;
+    padding-top: 200px;
+    text-align: center;
+}

@@ -1,0 +1,1439 @@
+################################################### SECTION 14 ###################################################
+-------------------------------------------------------------------------------------------------------------
+4/10/23: 830pm-1030pm
+
+JavaScript Basics!
+
+Primitives & The Console
+
++Primitive Types:
+-Number
+-String 
+-Boolean
+-Null
+-Undefined
+-Symbol 
+-BigInt
+
+NOTE: We will start learnig the basics of JavaScript by running our code in the console 
+(within the developer tools in the browser)
+OR just use the Online JavaScript Console in Programiz
+
+NOTE: Semicolon usage are considered optional in JavaScript, 
+but it is considered a good practice to use them. 
+
+JavaScript only has one Number type (no float)
+So, the Number type includes:
+-positive numbers
+-negative numbers
+-integers
+-decimals
+
++Common Math Operators
+//addition
+50 + 5 //5
+
+//subtraction
+90 - 1 //89
+
+//multiplication
+2 * 2 //4
+
+//division
+400 / 25 //16
+
+//exponent
+2 ** 3 //8
+
+//modulo
+27 % 2 //1
+
++PEMDAS (order of operations)
+parentheses, exponent, multiplication, division, addition, subtraction
+
++NaN - not a number
+(a numeric value that represents something that is not a number, but is of the Number type)
+
+0/0 //NaN
+
+1 + NaN //NaN
+
++typeof 
+(the typeof operator can be used to return the data type of something)
+Example:
+typeof 4 // "number"
+
+typeof NaN // "number"
+
+NOTE: This data type is explained because it might be the cause of some errors down the line.
+
+PEMDAS practice:
+equation = 4 + 3 * 4 / 2;
+console.log(equation); //10
+
+equation = (13 % 5) ** 2;
+console.log(equation); //9
+
+equation = 200 + 0/0;
+console.log(equation); //NaN
+
++Variables
+(used to store a value and give it a name so that we can do stuff with/change it later)
+
+Basic Syntax: 
+let someName = value;
+
+let year = 1985;
+
+let numHens = 2;
+let numRoosters = 4;
+
+numHens + numRoosters //6 
+
+let totalChickens = numHens + numRoosters; 
+console.log(totalChickens) //6 
+
+Can change the value of a variable in JavaScript:
+numHens = 3;
+OR 
+numHens = numHens + 1;
+OR
+numHens += 1;
+console.log(numHens); //3
+
++Updating values
+let score = 0;
+for (let i = 0; i < 3; i++){
+    score++;
+}
+console.log(score); //3
+
++Const & Var
+
+const
+(an immutable value)
+Syntax:
+const luckyNumber = 7;
+luckyNumber + 1; //will cause an error!!
+
+var
+(an antiquated variable keyword, no reason to use it)
+
+
++Booleans
+(true or false)
+
+Syntax:
+let isLoggedIn = true;
+
+let gameOver = false;
+
+NOTE: variables can also change types in JavaScript
+let numPuppies = 23;
+numPuppies = false;
+numPuppies = 100;
+console.log(numPuppies); //100
+
++Naming Conventions
+-camelCase 
+-cant start variable with a number
+-for Booleans, use the Syntax: isLoggedIn or isGameOver
+-always better to have a more meaningful variable over a consice one
+
+
+################################################### SECTION 15 ###################################################
+-------------------------------------------------------------------------------------------------------------
+4/16/23: 230pm-430pm
+
+JavaScript Strings & More
+
+Strings
+
+let firstName = "Ziggy"; // double quotes ok
+let mechMon = 'Bearobot'; // single quotes ok too!
+
++Indicies & Length
+
+In JavaScript, each character has a corresponding index (a positional number starting at 0)
+Example:
+c h i c k e n
+0 1 2 3 4 5 6
+
+Can index a String like so:
+let animal = "chicken";
+animal[0] // "c"
+animal[2] // "i"
+
+NOTE:
+If we try and index a character that is out of bounds, "undefined" is returned, 
+rather than an error.
+
+To get the Length of a string call .length on the string
+Example:
+console.log(animal.length); // 7
+
+NOTE: length is the total number of characters in a string,
+so:
+bat.length = 3
+book.length = 4
+
++String Concatenation
+(can add strings together)
+"yo" + "mama" // "yomama"
+
+If we add a number to a string, JavaScript will make them both strings.
+Example:
+let result = 1 + "hi"
+console.log(result); // "1hi"
+
+Upon further inspection, adding a number to a string will make it a typeof 'undefined'
+
++String Methods
+
+NOTE:
+calling .length on a string is property not a method
+animal.length = string.property
+
+Syntax:
+string.method() // parentheses are required!!!
+
+let msg = "i am the captain now"
+let yellMsg = msg.toUpperCase(); // "I AM THE CAPTAIN NOW"
+
+To get rid of unnecessary white space:
+let userInput = "  hello my name is Inigo Montoya..."
+userInput.trim() // "hello my name is Inigo Montoya..."
+
++Chaining Methods
+let greeting = "   hello again!  "
+let yellGreeting = greeting.trim().toUpperCase(); 
+console.log(yellGreeting); // "HELLO AGAIN!"
+
++String Methods With Arguments
+
+Syntax:
+string.method(arg);
+
+Some methods accept arguments, that modify their behavior. 
+Think of arguments as inputs that we can pass in (arguments are passed inside of parentheses).
+
+Tip:
+MDN contains information on JavaScript stuff too!!!
+
+.indexOf()
+let tvShow = "catdog";
+tvShow.indexOf('cat'); // 0 (because it starts at 0)
+tvShow.indexOf('d'); // 3
+
+"haha you suck!".indexOf('h'); // 0 (will return the first instance of 'h')
+
+.slice()
+"haha that is so funny!".slice(5) // "that is so funny!"
+
+let lol = "haha that is so funny!".slice(5, 9) // can add an end slice
+console.log(lol); // "that"
+
+.replace()
+let annoyingLaugh = "teehee so funny! teehee!"
+annoyingLaugh.replace('teehee', 'haha') // "haha so funny! teehee!"
+//this only replaces the first instance of teehee
+
+.repeat()
+"lol".repeat(3) // "lollollol"
+
+// practice with method chaining
+const word = "skateboard"; 
+var facialHair = word.slice(5,10).replace("o", "e"); // beard
+
++Template Literals
+(basically f strings  in JavaScript(also know as String Literals))
+
+Syntax:
+let sheepNum = 7;
+let sleepSheep = `I counted ${sheepNum} sheep.`; // I counted 7 sheep.
+
+NOTE: the $ sign is required when using an embedded variable ${variable or expression}
+
+Example:
+let product = "Artichoke";
+let price = 2.25;
+let qty = 5;
+
+let theSto = `I bought ${qty} ${product}'s, and the total was $${price * qty}`;
+console.log(theSto); // "I bought 5 Artichoke's, and the total was $11.25"
+
++Undefined & Null
+
+Null
+(intentional absence of any value, must be assigned)
+
+Undefined
+(var's that do not have an assigned value are undefined)
+
+// no one is logged in yet
+let loggedInUser = null;
+
+// a user logs in...
+loggedInUser = "Alan Rickman";
+
++Random Numbers & The Math Object
+
++Math Object
+(contains properties and methods for mathematical constants and funcitons)
+
+// Pi
+Math.Pi // 3.141592653589793
+
+// rounding a number
+Math.rounds(4.9) // 5
+
+// absolute value
+Math.abs(-40) // 40
+
+// exponents (raise 2 to the 5th power)
+Math.pow(2, 5) // 32
+
+// removes decimals
+Math.floor(3.9999) // 3
+
+JavaScript Object: "a collection of properties and methods"
+
++Random
+Math.random() will return a random decimal between 0 and 1
+
+randNum = Math.random(); // 0.31914252940616294
+intRandNum = Math.floor(randNum); // 0 
+
+Getting A Random Number
+// generate a random number between 1 and 10
+
+// Generate a random number between 1 and 10 (GPT)
+const randomNumber = Math.floor(Math.random() * 10) + 1;
+console.log(randomNumber); // Outputs a random number between 1 and 10
+
+// Quiz
+const die1 = Math.floor(Math.random() * 6) + 1; //random number from 1-6
+const die2 = Math.floor(Math.random() * 6) + 1; //random number from 1-6
+
+// YOUR CODE BELOW THIS LINE:
+let roll = `You rolled a ${die1} and a ${die2}. They sum to ${die1 + die2}`
+
+################################################### SECTION 16 ###################################################
+-------------------------------------------------------------------------------------------------------------
+4/16/23: 930pm-1030pm
+
+Decision Making With Code??
+
++Boolean Logic
+
+JavaScript uses standard comparison operators:
+> // greater than
+< // less than
+>= // greater than or equal to
+<= // less than or equal to
+
+It is possible to compare strings (based on their unicode values), 
+but there arent many good reasons for doing this.
+
++Equality Operators
+== // equality
+!= // not equal
+=== // strict equality
+!== // strict non-equality
+
+== (double equals)
+-checks for equality of value but not equality of type
+-it coerces both values to the same type and then compares them
+Example:
+1 == 1 // true
+1 == '1' // true
+
+0 == '' // true
+0 == false // true
+null == undefined // true
+
+=== (triple equals)
+-check for equality of value and type
+Example:
+2 === '2' // false
+false === 0 // false
+
+10 != '10' // false
+10 !== '10' // true
+
+Tip: 
+pretty much always use triple equals
+
+Console, Alert, & Prompt
+
+console.log() // prints stuff to the console
+alert("hellloooo!") // displays an annoying popup in the browser
+prompt("please type 1 in the chat!") // displays a popup with an entry for taking user input
+
+parseInt("101"); // 101 
+
+-------------------------------------------------------------------------------------------------------------
+4/18/23: 9pm-1030pm
+
++Running A JavaScript File From A Script!
+
+To connect a JavaScript file to our HTML document we add a Script Element in the <head>:
+<script src="app.js"></script>
+
+
+Once we have added our js script to the HTML doc, 
+we can open it up in the browser, but we will only see the printed JavaScript
+when we select "Inspect", and go to the console.
+
+The ideal place to put the script tag to connect our 
+js script is actually at the end of the body:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First JS Script!</title>
+</head>
+<body>
+    <h1>Hello From First JS FILE!</h1>
+    
+    <script src="app.js"></script> <---HERE!!!
+</body>
+</html>
+
+We do this because we want the HTML Elements (that JavaScript interacts with)
+to be loaded first.
+
+Conditional Statements
+
++If Statements
+
+Example:
+let rand = Math.floor(Math.random() * 10) + 1; // rand num between 1-10
+console.log(rand);
+
+if (rand < 5) {
+    console.log("Lower than 5!");
+}
+else if (rand > 5) {
+    console.log("Higher than 5!")
+}
+else {
+    console.log("Exactly 5!")
+}
+
+-------------------------------------------------------------------------------------------------------------
+4/24/23: 12pm-130pm
+
+Nesting Conditionals
+
+const password = prompt("please enter a new password: ")
+// password must be 6+ characters
+if (password. length >= 6) {
+    console.log("correct length!");
+}
+else{
+    console.log("incorrect length!");
+}
+
+// password cant include a space
+if (password.indexOf(' ') === -1){
+    console.log("correct!");
+}
+else{
+    console.log("incorrect!");
+}
+
+By nesting some conditions, we can take both of these conditions
+and put them into a single conditional statement
+
+// password must be 6+ characters
+if (password. length >= 6) {
+    // password cant include a space
+    if (password.indexOf(' ') === -1){
+        console.log("valid password");
+    }
+    else{
+        console.log("password cant contain spaces");
+    }
+}
+else{
+    console.log("password too short");
+}
+
++Logical Operators
+
+In JavaScript:
+&&=and ||=or !=not
+
+NOTE:
+&& will run before ||
+
+To make the order of logic operations clearer use parentheses
+(to emphasize the thing you want to check 1st).
+Example:
+if ((this = something && this = something) || this = something){
+    do the thing!
+}
+
++Truthy & Falsy Values
+In JavaScript, every value is either "truthy" or "falsy" when evaluated in a Boolean context. 
+In other words, when a value is used as a condition in an if statement, 
+for example, it is implicitly converted to a Boolean value.
+
+Values that are considered "falsy" in JavaScript:
+-false
+-null
+-undefined
+-0 (and -0)
+-NaN
+-"" (an empty string)
+
+Values are considered "truthy" in JavaScript:
+-true
+-any non-zero number (including negative numbers and decimals)
+-any non-empty string (including strings with only whitespace characters)
+-arrays (even empty arrays)
+-objects (even empty objects)
+-functions (even empty functions)
+
+
++Switch Statements
+(another control-flow statement that can replace multiple if statements)
+
+Syntax:
+const day = 1;
+switch(day) {
+    case 1:
+        console.log("Monday");
+        break;
+    case 2:
+        console.log("Tuesday");
+        break;
+    case 1:
+        console.log("Wednesday");
+        break;
+    case 1:
+        console.log("Thursday");
+        break;
+    case 1:
+        console.log("Friday");
+        break;
+    default:
+        console.log("Invalid Number")
+}
+
+
+################################################### SECTION 17 ###################################################
+-------------------------------------------------------------------------------------------------------------
+4/27/23: 7pm-10pm
+
+Introducing Arrays
+
+"Our first data structure"
+
+Data Structure:
+(a collection of data)
+
+Arrays:
+(Ordered collections of values)
+
+Could be:
+-list of comments on IG post
+-collection of levels in a game
+-songs in a playlist
+
+Syntax:
+// to make an empty array
+let array = [];
+
+// an array of strings
+let colors = ['red', 'orange', 'yellow']
+
+// an array of numbers
+let lottoNums = [19,22,23,56,51]
+
+// a mixed array
+let stuff = [true, 68, 'cat', null]
+
+How to index through an array:
+colors[1]; // 'orange'
+
+To get the length of an array:
+colors.length; // 3
+
+How to access something inside an array:
+colors[1][0] // 'o' (1st letter in orange)
+
+How to modify an array:
+let colors = ['rad', 'blue', 'yellow'];
+// update element at index 0
+colors[0] = 'red';
+
+If you add an element outside the length of an array, 
+that array will be extended (to match the index where you added an element)
+Example:
+let colors = ['red', 'orange', 'yellow']
+colors[5] = 'purple';
+console.log(colors.length); // 6
+// The 'empty' spaces are filled with 'undefined'
+
+Array Methods
+
+Push - add to end
+colors.push('teal');
+
+Pop - remove from end
+colors.pop();
+
+Shift - remove from start
+colors.shift();
+
+Unshift - add to start
+colors.unshift();
+
+More Array Methods
+
+concat - merge arrays
+const array1 = [1,2];
+const array2 = [3,4];
+const array3 = array1.concat(array2); 
+console.log(array3); // [1,2,3,4] 
+
+includes - look for a value
+console.log(array1.includes(1)); // true because it includes a 1
+
+indexOf - just like string indexOf
+array2.indexOf(3); // 0 (3 is at index 0 in array2) 
+
+join - creates a string from an array
+array3.join();  // ???
+
+reverse - reverses an array
+array3.reverse(); // [4,3,2,1] 
+
+slice - copies a portion on an array
+let colors = ['red', 'green', 'blue', 'yellow', 'purple'];
+colors.slice(2,4); // ['blue', 'yellow']
+
+splice - removes/replaces elements
+colors.splice(3, 1); // index where you want to start, elements you want to remove
+[ 'red', 'green', 'blue', 'purple' ]
+OR
+colors.splice(3, 0, 'magenta'); // start index 3, delete nothing, insert 'magenta'
+[ 'red', 'green', 'blue', 'magenta', 'yellow', 'purple' ]
+
+sort - sorts an array
+
+-------------------------------------------------------------------------------------------------------------
+5/1/23: 1030am - 630pm
+
+Multi-Dimensional Arrays
+
++Nested Array
+const colors = [
+    ['red', 'crimson'],
+    ['orange', 'marmalade'],
+    ['green', 'olive'],
+    ['purple', 'orchid']
+]
+
+TicTackToe Example:
+const gameBoard = [['x','o','x'],['o', null, 'x'],['o','o','x']]
+
+If we call the gameBoard in the terminal we get:
+>gameBoard
+['x','o','x']
+['o', null, 'x']
+['o','o','x']
+
+So how can we access the middle value?
+gameBoard[1][1]
+
++Nested Array Exercise
+Access the null value, and replace with "Hugo":
+const airplaneSeats = [
+    ['Ruth', 'Anthony', 'Stevie'],
+    ['Amelia', 'Pedro', 'Maya'],
+    ['Xavier', 'Ananya', 'Luis'],
+    ['Luke', null, 'Deniz'],
+    ['Rin', 'Sakura', 'Francisco']
+];
+
+airplaneSeats[3][1] = "Hugo";
+
+################################################### SECTION 18 ###################################################
+
+JavaScript Object Literals
+
+"Our second data structure!"
+
+Objects are a collection of properties.
+Properties are a key-value pair (like dictionaries in Python).
+To access data we use custom keys rather than indexes.
+
+Syntax:
+const jsObject = {key:value};
+
++How would we store information for a Fitbit?
+Using an object:
+const fitBitData = {
+    totalSteps       : 308727,
+    totalMiles       : 211.7,
+    avgCalorieBurn   : 5755,
+    workoutsThisWeek : '5 out of 7',
+    avgGoodSleep     : '2:13'
+}
+
+Another example of an object as a comment:
+username : 'crazyCatLady'
+upvotes  : 7
+text     : 'something cat related!'
+
+
+Creating Object Literals
+
+const person = {
+    firstName: 'Mick',
+    lastName: 'Jagger'
+}
+
++Accessing data from an object:
+person.firstName; // "Mick"
+
+OR
+person["firstName"]; // "Mick"
+
+NOTE:
+All keys are onverted to strings (except for symbols)
+
+All types can be used in an Object:
+let comment = {
+    username: "sillygoose420",
+    upVotes   : 69,
+    downVotes : 9,
+    netScore  : 60,
+    text      : "deez nuts be da bombaclocks!",
+    tags      : ['#funny', '#silly', '#69420']
+    isGilded  : false
+}
+
++Object Access Exercise
+Print the full address by accessind data in the object:
+const restaurant = {
+    name: 'Ichiran Ramen',
+    address: `${Math.floor(Math.random() * 100) + 1} Johnson Ave`,
+    city: 'Brooklyn',
+    state: 'NY',
+    zipcode: '11206',
+}
+
+let fullAddress = `${restaurant.address}, ${restaurant.city}, ${restaurant.state} ${restaurant.zipcode}`;
+// 83 Johnson Ave, Brooklyn, NY 11206
+
++Modifying Objects
+
++Updating data in an object:
+const midterms = {danielle: 96, thomas: 78}
+
+If we want to alter thomas's grade to a 79, we do:
+midterms.thomas = 79; 
+
+And thats it!
+
++Nesting Arrays & Objects
+
+Example:
+const shoppingCart = [
+    {
+        product  : 'Mixed Greens',
+        price    : 5.99,
+        quantity : 1
+    },
+    {
+        product  : 'Croutons',
+        price    : 2.99,
+        quantity : 1
+    }
+]
+
+
++Accessing an object within a array:
+const comments = [
+    {name: 'Tammy', text: 'omg lol', votes: 9}
+    {name: 'FishBoi', text: 'glub glub', votes: 12345}
+]
+
+If we want to access the text in the second object of the array:
+comments[1].text // 'glub glub'
+
+
+################################################### SECTION 19 ###################################################
+
+Repeating Stuff With Loops
+
+
+193. Intro to For Loops
+
+Syntax:
+for (let i = 1; i <= 10; i++) {  // start at 1, stop at 10, add 1 each time
+    console.log(i); // print 1-10
+}
+
++For Loop Practice
+// Print out "Da ba dee da ba daa" 6 times, using a for loop
+for (let i = 1; i <= 6; i++){
+    console.log("Da ba dee da ba daa");
+}
+
+How to count down in increments of 10 from 100:
+for (let i = 100; i >= 0; i -= 10){
+    console.log(i);
+}
+
+Can also increment by way of multiplication and division:
+for (let i = 10; i <= 1000; i *= 10){
+    console.log(i);
+}
+
+195. The Perils Of Infinite Loops
+
+Example of an infinite loop:
+for (let i = 1; i >= 0; i++){ 
+    console.log(i);
+}
+// this runs as long as i > 0, but i starts off > 0 so the loop never stops!
+
+196. Looping Over Arrays
+
+const animals = ['lions', 'tigers', 'bears'];
+let idx = 0;
+for (let i = 0; i < animals.length; i++){
+    idx += 1
+    console.log(idx, animals[i]);
+}
+
+If we wanted to iterate through this starting from the bottom:
+for (let i = animals.length - 1; i >= 0; i--){  // this is what is important here!
+    console.log(animals[i]);
+}
+
++Iterating Arrays Exercise
+//Make all the names uppercase
+const people = ["Scooby", "Velma", "Daphne", "Shaggy", "Fred"]; 
+
+for (let i = 0; i < people.length; i++){
+    console.log(people[i].toUpperCase());
+}
+
+197. Nested Loops
+
+// This code will neatly demonstrate how a nested for loop works
+for (let inner = 0; inner < 4; inner++){
+    console.log(`i is ${inner}`);
+    for (let outer = 0; outer < 4; outer ++){
+        console.log(`----j is ${outer}`);
+    }
+}
+// Outputs:
+i is 0
+----j is 0
+----j is 1
+----j is 2
+----j is 3
+i is 1
+----j is 0
+----j is 1
+----j is 2
+----j is 3
+i is 2
+----j is 0
+----j is 1
+----j is 2
+----j is 3
+i is 3
+----j is 0
+----j is 1
+----j is 2
+----j is 3
+
+
+-------------------------------------------------------------------------------------------------------------
+5/9/23: 1230pm - 4pm
+
+// Array of Arrays 
+const seatingChart = [
+    ['kristen', 'erik', 'namita'], 
+    ['geoff', 'juanita', 'antonio'],
+    ['kevin', 'sakura', 'jack']
+    ]
+
+// How can we print out all the names? (not the arrays)
+
+// This will print the arrays only 
+for (let i = 0; i < seatingChart.length; i++){
+    console.log(seatingChart[i]);
+}
+
+// This will print all the names
+for (let i = 0; i < seatingChart.length; i++){
+    const row = seatingChart[i];
+    console.log(`\nRow #${i + 1}`);
+    for (let j = 0; j < row.length; j++){
+        console.log(row[j]);
+    }
+}
+
+198. While Loops
+
+Syntax:
+
+let num = 0;
+while (num < 10) {
+    console.log(num);
+    num++;
+}
+// This will run 10 times before stopping
+
+202. The Lovely For...Of Loop
+
+Syntax:
+for (variable of iterable){
+    statement
+}
+
+//Lets print out the contents of this array with a For Of Loop:
+const subreddits = ['cringe', 'books', 'chickens', 'funny', 'pics', 'soccer', 'skateboarding']
+
+//we first create a variable (sub) that will represent our iterable (like i in a for loop)
+for (let sub of subreddits){
+    console.log(sub);
+}
+
+And thats it!
+
+// Now lets re-write the loop that goes through the seatingChart with For Of (original)
+for (let i = 0; i < seatingChart.length; i++){
+    const row = seatingChart[i];
+    for (let j = 0; j < row.length; j++){
+        console.log(row[j]);
+    }
+}
+
+// For Of version 
+for (let row of seatingChart){
+    for (let student of row){
+        console.log(student);
+    }
+}
+
+// Iterating through a string
+for (let char of "YO MAMMA"){
+    console.log(char);
+}
+
++For Of Exercise
+I've provided you with an array called numbers. Please use a for...of loop to loop over it, 
+and print out the square of each value (the number multiplied by itself).
+
+const numbers = [1,2,3,4,5,6,7,8,9]; 
+for (let num of numbers){
+    console.log(num *= num);
+}
+
+
+203. Iterating Over Objects
+
+Here we have an Object Literal (dictionary) that we want to iterate through:
+
+let comment = {
+    username: "sillygoose420",
+    upVotes   : 69,
+    downVotes : 9,
+    netScore  : 60,
+    text      : "put a bird on it!",
+    tags      : ['#funny','#69420']
+}
+
+So we cant use a For Of loop in the situation, but there is something similar...
+
+// We will use a For In Loop to iterate through the keys in this object literal
+for (let c in comment){
+    console.log(c);
+}
+
+// If we want to display the values as well we can do this:
+for (let c in comment){
+    console.log(`Keys: ${c} \nValues: ${comment[c]}`);
+}
+
+-------------------------------------------------------------------------------------------------------------
+5/16/23: 1230pm - 3pm
+
+There is another method that allows one to iterate through an object:
+
+Object.keys(comment) // will return the keys in that object
+Object.values(comment) // will return the values in that object
+
+//If we have an object that contains test scores for students
+//and we want to get the average score we can:
+
+const testScores = {
+    keenan: 80,
+    damon: 67,
+    kim: 89,
+    shawn: 91,
+    marlon: 72,
+    dwayne: 77,
+    elvira: 97
+}
+
+// first loop iterate through the values using the Object.values() method
+
+for (let score of Object.values(testScores)){
+    console.log(score);
+}
+
+// then to get the average we create a variable for total and our object(to get the length)
+
+let total = 0;
+let scores = Object.values(testScores);
+for (let score of scores){
+    total += score;
+}
+console.log(Math.round(total/scores.length)); // added the round function
+
+204. Todo List Project Info
+
+We will be making a command line TODO list app.
+This app will allow us to add new todo items, list all the current items, delete items
+and quit the app.
+
+// My version of the TODO app:
+
+// TODO list app in JavaScript. 
+let usingApp = true;
+let loop = 0;
+let todoItems = {};
+
+while (usingApp === true){
+    console.log("\nTODO List App\n")
+    loop += 1;
+    let addTodo = prompt("Add a TODO item: ");
+    todoItems.loop = addTodo;
+
+    let checkItems = prompt("Check your TODO list items? ");
+    if (checkItems === "y"){
+        for (let td in todoItems){
+            console.log(`${loop}: ${todoItems[td]}`);
+        }
+    }
+    else{
+        console.log("\nCheck back later!");
+    }
+    
+    let quitApp = prompt("\nKeep using the app? (y/n) ");
+    if (quitApp === "n"){
+        usingApp = false;
+    }
+}
+console.log("Thank you fo using TODO App.")
+
+
+205. Todo List Project CodeAlong
+
+// Colt's version of the TODO app:
+
+let input = prompt("What would you like to do? ");
+const todos = []; 
+while (input !== "quit" && input !== "q"){
+    if (input === "list"){
+        console.log("**************");
+        for (let i = 0; i < todos.length; i++){
+            console.log(`${i}: ${todos[i]}`);
+        }
+        console.log("**************");
+    }
+    else if (input === "new"){
+        const newTodo = prompt("Add a new todo: ");
+        todos.push(newTodo);
+        console.log(`"${newTodo}" added to the list!`);
+    }
+    else if (input === "delete"){
+        const index = parseInt(prompt("Enter index number to delete a todo: "));
+        if (!Number.isNaN(index)){
+            const deleted = todos.splice(index, 1);
+            console.log(`deleted "${deleted}"`);
+        }
+        else{
+            console.log("Unknown index.");
+        }
+    }
+        
+    input = prompt("What would you like to do? ");
+}
+console.log("You have left the TODO App");
+
+
+################################################### SECTION 20 ###################################################
+-------------------------------------------------------------------------------------------------------------
+5/17/23: 1215pm - 420pm
+
+207. Intro To Functions
+
+What is a function? 
+(A reusable procedure)
+- allow us to write reusable, modular code
+- we define a chunk of code that we can execute at a later time
+
+Functions typically use camelCase in JavaScript, 
+Objects use PascalCase
+
+208. Our Very First Function
+
+Two step process when it comes to function
+1. Define a funciton
+Syntax:
+funciton funcName(){
+    //do something
+}
+
+2. Run
+In order to use the logic in the function one must call it, like so:
+funcName();
+
+209. Arguments Intro
+
+Arguments
+(Inputs to a function)
+
+Example:
+A function called avg() can take 2 arguments to give us an average of those numbers
+
+avg(20,25); // 22.5
+
+Here is a simple greet function:
+
+function greet(person){
+    console.log(`Hi, ${person}`);
+}
+
+And we call that function like this:
+
+greet("Bob"); // Hi, Bob
+
+Coding Exercise (rant function)
+//define a function called rant that takes an argument called message
+//and prints that message 3 times in uppercase
+function rant(message){
+    console.log(message.toUpperCase());
+    console.log(message.toUpperCase());
+    console.log(message.toUpperCase());
+}
+rant("i hate school");
+
+
+210. Functions With Multiple Arguments
+
+Lets make a simple greeting function with 2 parameters
+
+function greet(first, last){
+    console.log(`Hello, ${first} ${last}`);
+}
+
+greet("dali", "lamma");
+
+Now lets make a function that repeats a string
+
+function repeat(str, repeat){
+    for (let i = 0; i < repeat; i++){
+        console.log(str);
+    }
+}
+
+repeat("kill me", 3);
+
+Coding Exercise (multiple args exercise)
+// make a function that checks if two numbers equal snake eyes
+
+function isSnakeEyes(a, b){
+    if (a === 1 && b === 1) {
+        console.log("Snake Eyes!");
+    }
+    else {
+        console.log("Not Snake Eyes!");
+    }
+}
+
+isSnakeEyes(1,1);
+
+211. The Return Keyword
+
+Return 
+(Built-in methods return values when we call them, we can store those values using return)
+
+To make a simple addition function we would have to use 
+the return keyword if we want to do something with the sum
+
+Example:
+function addNums(a, b){
+    let sum = a + b;
+    return sum 
+}
+
+sum1 = addNums(2,2);
+sum2 = addNums(3,3);
+totalSum = sum1 + sum2;
+console.log(totalSum);
+
+NOTE: 
+A function can only return one value (although that value could be an array that holds many values)
+
+Coding Exercise (return value practice)
+// make a function that multiplies two numbers and returns their product
+
+function multiply(x, y){
+    let product = x * y;
+    return product
+}
+
+multiply(2,2);
+
+Coding Exercise (isShortsWeather function)
+// create a function that determines whether it is appropriate 
+// to wear shorts based on the temperature outside
+
+function isShortsWeather(temperature){
+    if (temperature >= 75) {
+        return true
+    }
+    else {
+        return false
+    }
+}
+
+isShortsWeather(46);
+
+Coding Exercise (Last Element Exercise)
+// write a function called lastElement which accepts a single array argument
+// the function should return the last element of the array (without removing the element)
+// if the array is empty, return null
+
+function lastElement(array) { 
+  if (array.length === 0) {
+    return null;
+  }
+
+  return array[array.length - 1];
+}
+
+Coding Exercise (Capitalize Exercise)
+// define a function called capitalize that accepts a string argument and 
+// returns a new string with the first letter capitalized (and only that letter)
+
+function capitalize(str){
+    let first = str[0].toUpperCase();
+    let theRest = str.substring(1);
+    return first + theRest
+}
+
+console.log(capitalize("bananas!"));
+
+Coding Exercise (Sum Array)
+// write a function called sumArray which accepts a single argument (array of numbers)
+// it should return the sum of all the numbers in that array
+
+function sumArray(array){
+    let total = 0;
+    for (let i = 0; i < array.length; i++){
+        total += array[i];
+    }
+    return total
+}
+
+console.log(sumArray([1,1,1,1]));
+
+Coding Exercise (Days Of The Week Exercise)
+// write a function called returnDay that takes one parameter (1-7) 
+// and returns the day of the week (1 is Monday, 2 is Tuesday, etc.)
+// if the number is less than 1 or greater than 7 return null
+
+function returnDay(day){
+    weekdays = {
+        1:"Monday", 
+        2:"Tuesday", 
+        3:"Wednesday",
+        4:"Thursday",
+        5:"Friday",
+        6:"Saturday",
+        7:"Sunday"
+    }
+    if (day < 1 || day > 7){
+        return null
+    }
+    else{
+        dayRequest = weekdays[day]
+        return dayRequest
+    }
+}
+
+
+################################################### SECTION 21 ###################################################
+-------------------------------------------------------------------------------------------------------------
+5/18/23: 2pm - 4pm
+
+213. Function Scope
+
+Scope
+(Variable "visibility": The location where a var is defined dictates where we have access to that variable)
+
+So putting a var in a funciton vs putting it in the open.
+
+214. Block Scope
+
+Similar to how some vars cant be accessed if they belong to a function,
+vars inside a conditional statement will also have limited access.
+
+Take this Block of code for example:
+
+let name = "Bob";
+if (name === "Bob"){
+    let occupation = "BurgerMan";
+}
+
+console.log(name);
+console.log(occupation); <- We will get an error right here because the interpreter is going to say 
+                            that occupation is undefined.
+
+NOTE: let and const are block scoped var declaration keywords, var is not.
+
+215. Lexical Scope
+
+Lexical Scope 
+(An inner function nested inside of some parent function has access to 
+the scope to the scope or to the variables defined in the scope of that outer function)
+
+Example:
+
+func bankRobbery(){
+    const heroes = ['spiderman', 'batman'];
+    function cryForHelp(){
+        for (let hero of heroes){
+            console.log(`Please help us ${hero.toUpperCase()}`); // must call cryForHelp to print this!
+        }
+    }
+    cryForHelp();
+}
+
+bankRobbery(); // must run this to print the message!
+
+216. Function Expressions
+(A conceptually different way of defining a function)
+
+Syntax:
+
+const square = function (num) {
+    return num * num;
+}
+square(7); // 49
+
+Another example:
+
+const add = function (x, y) {
+    return x + y;
+}
+// We still call this the same as a regular function
+add(2, 2) // 4
+
+The significance behinf Colt teaching us about function expressions is:
+"Functions are values in JavaScript, we can store them, we can pass them around 
+just like we could pass around and store a number or an array or an object."
+
+
+217. Higher Order Functions
+
+Higher Order Functions
+(Functions that operate on/with other functions)
+
+They can:
+- accept other functions as arguments
+- return a function
+
+Example:
+
+function callTwice(func) {
+    func();
+    func();
+}
+
+function laugh() {
+    console.log("HAHAHA");
+}
+callTwice(laugh); // pass a function as an argument
+
+NOTE: 
+When passing the value of a function (like 'laugh') the "()" arent necessary!
+
+
+218. Returning Functions
+
+Below is an example that purely demonstates that it is possible to return a function.
+
+Example:
+
+function makeMysteryFunc(){
+    const rand = Math.random();
+    if (rand > 0.5) {
+        return funcion() {
+            console.log("You win!");
+        }
+    }
+    else {
+        return function() {
+            alert("You lose!");
+        }
+    }
+}
+
+// we can define a constant and use it to run the mystery function
+const mystery = makeMysteryFunc();
+
+// then we can call mystery, like a regular function
+mystery();
+
+Here's another example that demonstrates a pattern that is considered useful:
+
+Suppose we wanted to create a function that returns wether a number is between a certain range.
+We could make multiple functions that do that like so:
+
+function isBetween(num) {
+    return num >= 50 && num <= 100
+}
+
+function isBetween2(num) {
+    return num >= 1 && num <= 10
+}
+
+OR, we could make "Factory Function" (a function that will generate another function)
+
+Example:
+
+function makeBetweenFunc(min, max) {
+    return function (num) {
+        return num >= min && num <= max;
+    }
+}
+
+// we can then store the generated function in a const, and then call that const
+
+const child = makeBetweenFunc(0, 18); 
+child(40); // false
+
+const adult = makeBetweenFunc(19, 64);
+adult(40); // true
+
+
+219. Defining Methods
+
