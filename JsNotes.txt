@@ -1434,6 +1434,115 @@ child(40); // false
 const adult = makeBetweenFunc(19, 64);
 adult(40); // true
 
+-------------------------------------------------------------------------------------------------------------
+5/30/23: 12pm - 2pm
 
 219. Defining Methods
+
+Method:
+(a function that has been placed as a property on an object)
+
+Most functions can be accessed by using the . operator
+
+Here we can define an object that has 2 methods (using short-hand syntax)
+
+const myMath = {
+    PI: 3.14159,
+    square(num){          // method 1
+        return num * num;
+    },
+    cube(num){            // method 2
+        return ** 3;
+    }
+}
+
+Coding Exercise (Methods Exercise)
+Define an object called square, which will hold methods that have to do with the geometry of squares. 
+It should contain two methods, area and perimeter 
+
+- area should accept the length of a side (all sides are the same in a square) and then return the side squared. 
+
+- perimeter should accept the length of a side and return that side multiplied by 4.
+
+const square = {
+    
+    area(side){
+        return side * side;
+    },
+    
+    perimeter(side) {
+        return side * 4;
+    }
+}
+
+
+220. The Myseterious "this" Keyword
+
+Use the keyword "this" to access other properties on the same object.
+
+Most commonly used inside of an object in a method.
+
+Example:
+const cat = {
+
+    name: "Blue Steele",
+    color: "grey",
+    breed: "scottish fold",
+
+    meow(){
+        console.log(`${this.name} says meow!`); // to access the name property we use "this"
+    }
+}
+
+NOTE: for further explanation, visit Colt's YT channel
+
+Coding Exercise (Egg Laying Exercise)
+Define an object called hen.  It should have three properties:
+
+name should be set to 'Helen'
+
+eggCount should be set to 0
+
+layAnEgg should be a method which increments the value of eggCount by 1 and returns the string "EGG".  
+You'll need to use this.
+
+const hen = {
+    name: "Helen",
+    eggCount: 0,
+
+    layAnEgg(){
+        this.eggCount += 1;
+        return "EGG";
+    }
+}
+
+
+221. Using Try/Catch
+
+Standard error-handling keywords
+
+Syntax:
+try {
+    hello.toUpperCase(); // hello is not defined
+}
+catch{
+    console.log("Error!");
+}
+
+An example using a try/catch within a function:
+
+function yell(msg){
+    try {
+        console.log(msg.toUpperCase().repeat(3));
+    } catch(e) {
+        console.log(e); // print the error
+        console.log("Please pass in a string!");
+    }
+}
+
+yell(1); // this will trigger an error and be caught by our try/catch
+
+################################################### SECTION 22 ###################################################
+
+Callbacks & Array Methods
 
