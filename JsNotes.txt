@@ -1546,3 +1546,393 @@ yell(1); // this will trigger an error and be caught by our try/catch
 
 Callbacks & Array Methods
 
+224. The forEach Method
+
+forEach
+(Accepts a callback function, calls the function once per element in the array)
+
+The forEach method is not used as much after the forOf loop was added to JavaScript.
+
+This is an uncommon way to use forEach, but demonstates its use well
+
+const numbers = [1,2,3,4,5];
+
+function print(element){
+    console.log(element);
+}
+
+numbers.forEach(print); // pass in the print function 
+
+
+Below we have an instance of each doing the same thing:
+
+const numbers = [1,2,3,4,5];
+
+// forEach
+numbers.forEach(function (el)){
+    console.log(el);
+}
+
+// forOf
+for (let el of numbers){
+    console.log(el);
+}
+
+The forEach instance in the previous example uses an anonymous function specifically 
+for iterating through an object (and doing something once per element in an array). 
+This is the most common usage of the forEach method.
+
+
+-------------------------------------------------------------------------------------------------------------
+6/13/23: 12pm - 2pm
+
+225. The Map Method
+
+Map 
+(creates a new array with the results of calling a callback on every element in the array)
+
+Example:
+
+// Here we have an array of integers
+
+const numbers = [1,2,3,4,5];
+
+// With the Map function we can take every element in that array and alter it,
+// then return that in a new array (after saving it to a new const)
+
+const doubles = numbers.map(function (num){
+    return num * 2;
+});
+
+console.log(doubles); // [ 2, 4, 6, 8, 10 ]
+
+// In another example we have an array that contains objects with a movie title/movie score
+
+const movies = [
+    {
+        title: 'Amadeus',
+        score: 99
+    },
+    {
+        title: 'Stand By Me',
+        score: 85
+    },
+    {
+        title: 'Parasite',
+        score: 95
+    }
+];
+
+// If we want to return just the title, we can achieve this with Map
+
+const titles = movies.map(function(movie){
+    return movie.title; // we could also add a function to the return like .toUpperCase()
+})
+
+console.log(titles); // [ 'Amadeus', 'Stand By Me', 'Parasite' ]
+
+
+226. Intro To Arrow Functions
+
+Arrow Function
+(Syntactically compact alternative to a regular function expression)
+
+Example:
+
+// Regular Function 
+function square(x){
+    return x * x
+}
+
+// Arrow Function
+const square = (x) => {
+    return x * x;
+}
+
+// these will both be called the same way
+square(2,2) // 4
+
+
+If your fucntion doesnt have any parameters, you will still need to add parentheses.
+
+Example:
+
+const rollDie = () => {
+    return Math.floor(Math.random() * 6) + 1;
+}
+
+console.log(rollDie()); 
+
+
+-------------------------------------------------------------------------------------------------------------
+6/14/23: 1pm - 2pm
+
+227. Arrow Function Implicit Returns
+
+There is a way to make an arrow function with an implicit return (without return keyword)
+
+// We can take the rollDie function from earlier and alter it as an example
+
+// All we do here is remove the return keyword and replace the curly braces with parentheses
+
+const rollDie = () => (
+    Math.floor(Math.random() * 6) + 1;
+)
+
+We could also make one-line Functions!
+
+// We can take this arrow function 
+
+const add = (a,b) => {
+    return a + b;
+}
+
+// And shorten it to this 
+
+const add = (a,b) => a + b;
+
+NOTE: 
+Implicit returns only work when there is only one expression in the body of your function
+
+
+228. Arrow Functions Wrapup
+
+We will now revisit maps and for each to use them with arrow functions
+
+const movies = [
+    {
+        title: 'Amadeus',
+        score: 99
+    },
+    {
+        title: 'Stand By Me',
+        score: 85
+    },
+    {
+        title: 'Parasite',
+        score: 95
+    }
+];
+
+// Without arrow function
+
+const newMovies = movies.map(function(movie){
+    return `${movie.title} - ${movie.score / 10}`
+});
+
+// With arrow function
+
+const newMovies = movies.map(movie =>(
+    `${movie.title} = ${movie.score / 10}`
+));
+
+// I don't like it! but apparently it works just fine.
+
+But the important thing to realize is that this is a good way to 
+pass a function into another function (in the example below we pass a function into the map function)
+
+-------------------------------------------------------------------------------------------------------------
+6/15/23: 11am - 1pm
+
+229. setTimeout And setInterval 
+
+setTimeout
+(sets a timer which executes a function once the timer expires)
+
+It takes 2 parameters, the first is a function you want to call after a delay,
+and the second is the ammount in milliseconds you want to wait.
+
+So we could call a console.log after 3 seconds like so:
+
+console.log("GO!");
+setTimeout(() => {console.log("3 seconds later...")}, 3000);
+
+
+setInterval
+(Repeatedly calls a function with a fixed time delay between each call)
+
+// The code below will execute every 2 seconds
+
+setInterval(() => {
+    console.log(Math.random())
+}, 2000);
+
+// We will need a seperate function to stop this interval
+
+// First we'll store the interval in a const called id
+
+const id = setInterval(() => {
+    console.log(Math.random())
+}, 2000);
+
+// Now we can call clearInterval and pass in the id const
+
+clearInterval(id);
+
+// We can then combine all 3 of these functions to set an interval
+// and stop it, like so:
+
+setTimeout(() => {clearInterval(id)}, 6000); // will stop interval after 6 seconds
+
+const id = setInterval(() => {
+    console.log(Math.random())
+}, 2000);
+
+
+230. The Filter Method
+
+filter
+(creates a new array with all elements that pass the test implemented by the provided function)
+
+Example:
+
+// If we wanted to filter out a specific number from an array we can do this
+
+const numbers = [1,2,3,4,69,420];
+
+const giggidy = numbers.filter(n => {
+    return n === 69
+});
+
+console.log(giggidy);
+
+// In another example we can refer to our movies array and filter out the bad ones
+
+const movies = [
+    {
+        title: 'Amadeus',
+        score: 99
+    },
+    {
+        title: 'Sharknado',
+        score: 35
+    },
+    {
+        title: 'Parasite',
+        score: 95
+    }
+];
+
+const goodMovies = movies.filter(movie => {
+    return movie.score > 80
+});
+
+console.log(goodMovies); // only movies with a score above 80 will be returned
+
+// We can also shorten this by using an implicit return
+
+const goodMovies = movies.filter(m => m.score > 80);
+
+// We can take this a step further and use map() to return only the titles
+
+const goodMovies = movies.filter(m => m.score > 80).map(m => m.title);
+
+
+Coding Exercise (Filter Exercise)
+Write a function called validUserNames that accepts an array of usernames (strings).  
+It should return a new array, containing only the usernames that are less than 10 characters.
+
+function validUserNames(usernames) {
+    return usernames.filter(function(username) {
+        return username.length < 10;
+    });
+}
+
+validUserNames(["sterlin archer", "zim", "sokka"]); // ["zim", "sokka"]
+
+// Heres the way to do it without a function 
+
+const userNames = ["sterlin archer", "zim", "sokka"];
+const result = userNames.filter(word => word.length < 10);
+console.log(result);
+
+
+231. Some & Every Methods
+
+every 
+(tests whether all elements in an array pass the provided function, return a boolean)
+
+// Here we have an array of exam scores and we want to see if they were all passing grades
+
+const exams = [80, 98, 92, 89];
+
+result = exams.every(score => score >= 75);
+console.log(result); // true
+
+some 
+(returns true if any of the array elements pass the test function)
+
+const exams = [69, 98, 92, 89];
+
+result = exams.some(score => score >= 75);
+console.log(result); // true
+
+
+Coding Exercise (Some & Every Exercise)
+Define a function called allEvens that accepts a single array of numbers.  
+If the array contains all even numbers, return true. Otherwise, return false. 
+
+function allEvens(array) {
+  return array.every(num => num % 2 === 0);
+}
+
+result = allEvens([2,4,6,9]);
+console.log(result); // false
+
+
+232. The Notorious Reduce function
+
+reduce
+(Executes a reducer function on each element of the array, resulting in a single value)
+
+// If we want to do something like summing an array we can do so with reduce
+
+const nums = [3,5,7,9,11].reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+});
+
+console.log(nums); // 35
+
+// Here we can do the same thing buy using a for of loop
+
+const prices = [10, 20, 30, 40];
+let total = 0;
+for (let price of prices) {
+    total += price
+}
+console.log(total);
+
+// And the equivalent using reduce would look like this
+
+const prices = [10, 20, 30, 40];
+const total = prices.reduce((total, prices){
+    return total + price
+});
+
+// we can even do this on one line
+
+const total = prices.reduce((total, price) => total + price)
+
+
+234. Arrow Functions & This
+
+// Quick example of how to use the keyword "this" in an arrow function
+
+const person = {
+    firstName: "Viggo",
+    lastName: "Mortensen",
+    fullName: function () {
+        return `${this.firstName} ${this.lastName}`
+    }
+}
+
+console.log(person.fullName());
+
+Important takeaway!!! the keyword "this" behaves differently in an arrow function vs a regular function  
+
+
+################################################### SECTION 23 ###################################################
+
+Newer Javascript Features
+
+
