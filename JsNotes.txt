@@ -1935,4 +1935,272 @@ Important takeaway!!! the keyword "this" behaves differently in an arrow functio
 
 Newer Javascript Features
 
+-------------------------------------------------------------------------------------------------------------
+6/21/23: 1030am - 1130am
+
+236. Default Params
+
+If we want to add a default parameter to our function we do it like so:
+
+function multiply(a, b = 1){
+    return a * b
+}
+
+multiply(4); // 4
+multiply(4, 5) // 20
+
+// In the example above, a has no default parameter, but b does
+
+
+We could also add a default parameter to our rollDie function
+
+function rollDie(numSides = 6){
+    return Math.floor(Math.random() * numSides) + 1
+}
+
+rollDie() // will return num between 1 and 6
+
+
+237. Spread In Function Calls
+
+Spread
+(Allows an iterable such as an array to be expanded in places where zero or more 
+arguments or elements are expected)
+
+If we are using the built in Math.max function in JavaScript,
+we must provide at least a few numbers, like so:
+
+Math.max(1,2,3,4); // 4
+
+Lets say we wanted to pass in an array of nums rather than passing in multiple arguments...
+
+const numArray = [1,2,3,4];
+
+When we pass it in, we get NaN
+
+Math.max(numArray); // NaN
+
+But with the spread syntax, we can pass the array in!
+
+Math.max(...numArray); // 4
+
+// We can also use the spread syntax to seperate the individual characters of a string
+
+console.log(..."hello"); // h e l l o
+
+
+-------------------------------------------------------------------------------------------------------------
+6/22/23: 230pm - 430pm
+
+
+238. Spread With Array Literals
+
+
+We can use the Spread syntax to create a new array using an existing array
+
+Example:
+
+// lets take these arrays and create new ones using spread!
+const nums1 = [1,2,3];
+const nums2 = [4,5,6];
+
+// new array 
+[...nums1, ...nums2]; // [1,2,3,4,5,6,]
+
+// another new array
+[ "a", "b", ...nums1 ]; // ["a","b",1,2,3]
+
+
+239. Spread With Objects
+
+Same idea as with the array literals, but with Objects
+
+Example:
+
+const canine = {family:"Canine", furry:true};
+
+const dog = {...canine, isPet: true}; // {family:"Canine", furry:true, isPet: true};
+
+NOTE:
+When using the spread syntax to create new objects the order matters.
+
+Lets use our canine object and an additional feline object
+
+const canine = { family:"Canine", furry:true };
+const feline = { legs:4, family:"Felidae" };
+
+We will combine the two objects into a new object called catDog
+
+const catDog = {...feline, ...canine};
+
+But! There is a conflict here, since they both have family as a property,
+and in this case the order matters.
+
+Here is what we get back, the (family:"Felidae"), 
+is ignored because it came first when creating the new array. 
+
+catDog; // { legs: 4, family: 'Canine', furry: true }
+
+If we were to reverse the order {...canine, ...feline}, the same rule would be applied
+
+catDog; // { family: 'Felidae', furry: true, legs: 4 }
+
+// We can also use spread syntax to give an object some quick keys (spread an array into an object)
+
+spreadArray = [4,5,6];
+
+spreadArrayObject = {...spreadArray}; // { '0': 4, '1': 5, '2': 6 }
+
+// Can do the same with a string
+
+spreadString = {..."HEYYY"}; // { '0': 'H', '1': 'E', '2': 'Y', '3': 'Y', '4': 'Y' }
+
+// A real life use case for the spread syntax can be something like adding data to data from a form
+
+const dataFromForm = {
+    email: "blueman@gmail.com",
+    password: "tobias123!",
+    username: "tfunke"
+};
+
+// Lets add some more properties to this object
+
+const newUser = {...dataFromForm, id: 4321, isAdmin: false};
+
+// And we get our output below
+
+{
+  email: 'blueman@gmail.com',
+  password: 'tobias123!',
+  username: 'tfunke',
+  id: 4321,
+  isAdmin: false
+}
+
+
+240. Rest Params
+
+To understand rest params we will first cover the "arguments" object
+
+This array-like object can be used in a function that may require multiple arguments
+arguments:
+- has a length property
+- doesnt have array methods like push/pop
+- contains all the arguments passed into the function
+- not available inside of arrow functions
+
+function sumAll(){
+    let total = 0;
+    for (let i = 0: i < arguments.length; i++){
+        total += arguments[i];
+    }
+    return total;
+}
+
+sumAll(8,4,3,2); // 17
+sumAll(2,3); // 5
+
+// Now back to the rest params!
+
+Rest Params
+(Collects all remaining arguments into an actual array, uses ... syntax)
+
+// we add the ... in the param area 
+
+function sumAll(...nums){  
+    let total = 0;
+    for (let n of nums) total += n;
+    return total;
+}
+
+sumAll(1,2); // 2
+sumAll(1,2,3,4,5,); // 15
+
+// In another example we have a function called raceResults, which has 2 pararms and a rest param
+
+function raceResults(gold, silver, ...everyoneElse){
+    console.log(`Gold medal goes to: ${gold}`);
+    console.log(`Silver medal goes to: ${silver}`);
+    console.log(`And thanks to everyone else: ${everyoneElse}`);
+}
+
+raceResults("Tammy", "Timmy", "Toby", "Tamara", "Todd"); // Output Below
+
+Gold medal goes to: Tammy
+Silver medal goes to: Timmy
+And thanks to everyone else: Toby,Tamara,Todd
+undefined // not sure why this was printed 
+
+-------------------------------------------------------------------------------------------------------------
+6/27/23: 12pm - 2pm
+
+
+241. Destructuring Arrays
+
+Destructuring
+(A short, clean syntax to unpack values from arrays or properties from objects into distinct vars)
+
+With the destructuring syntax we can take an array and copy parts of it into a new array.
+
+// Here we have an array that holds some strings
+const raceResults = ["Eliud Kipchoge", "Feyisa Lelisa", "Galen Rupp", "Other Runner", "Last Runner"];
+
+// Below we will add a [] after the const keyword and then assign that to our array
+const [gold, silver, bronze] = raceResults;
+gold; // "Eliud Kipchoge"
+silver; // "Feyisa Lelisa"
+bronze; // "Galen Rupp"
+
+// We could also use this in combination with the rest syntax 
+const [gold, silver, bronze, ...everyoneElse] = raceResults;
+everyoneElse; // "Other Runner", "Last Runner"
+
+
+242. Destructuring Objects
+
+// We can also destructure things in objects, syntax below:
+
+const runner = {
+    first: "Eluid",
+    last: "Kipchoge",
+    country: "Kenya",
+    title: "Elder of the Order of the Golden Heart of Kenya"
+}
+
+const {first, last, country} = runner;
+
+first; // "Eluid"
+last; // "Kipchoge"
+country // "Kenya"
+
+// We can also create new variables that relate to data in the object
+
+const {first: firstName, last: lastName} = runner;
+firstName // "Eluid"
+lastName // "Kipchoge"
+
+
+243. Destructuring Params
+
+// Syntax for using destructuring in the parameter area
+
+function fullName({first, last}) {
+    return `${first} ${last}`
+}
+
+const runner = {
+    first: "Eluid",
+    last: "Kipchoge",
+    country: "Kenya"
+}
+
+fullName(runner); // "Eluid Kipchoge"
+
+
+################################################### SECTION 24 ###################################################
+
+Introducing The World Of The DOM
+
+
+
 
