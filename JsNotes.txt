@@ -2199,7 +2199,640 @@ fullName(runner); // "Eluid Kipchoge"
 
 ################################################### SECTION 24 ###################################################
 
+-------------------------------------------------------------------------------------------------------------
+6/28/23: 1pm - 3pm
+
 Introducing The World Of The DOM
+
+245. Introducting the DOM
+
+DOM: Document Object Model
+(An API that represents and interacts with any HTML or XML document.)
+
+The DOM is a document model loaded in the browser and representing the document as a node tree, 
+where each node represents part of the document (e.g. an element, text string, or comment).
+
+Colt's Definition:
+"A bunch of objects that you can interact with via JavaScript"
+
+Basically what will happen is you have html & css that will all be 
+converted into JS objects that we can do stuff with.
+
+
+246. The Document Object
+
+Colt introduces the Tree Data Structure as it relates to JavaScript
+
+The Tree:
+Basically a parent/child structure similar to the Tree in Godot
+
+In order to view the Document Object of a given page in the Dev Tools:
+- Go to console
+- console.dir(document) 
+- select the drop down after #document
+
+The Document Object Model (DOM) is an API provided by web browsers. 
+It represents the HTML or XML document as a tree-like structure, 
+where each element in the document is a node in the tree. 
+Through the DOM, JavaScript can access and manipulate the elements, attributes, 
+and styles of an HTML document. JavaScript provides methods and properties to interact with the DOM, 
+allowing you to dynamically modify the structure and appearance of a webpage.
+
+
+247.getElementById
+
+getElementById is a method that exists on the document, 
+and when called, a string is passed in that corresponds to an id on an element.
+
+Syntax:
+var element = document.getElementById(id);
+
+Param:
+The id of the element to locate. It is case-sensitive
+
+Return:
+An element object describing the DOM element object matching the specified id
+
+// We can then take that variable and call it in console.dir(), like so:
+
+console.dir(id);
+
+// We will get back the document object that pertains to that id, 
+// and then can select the drop down, to view that objects specifics
+
+getElementById() ONLY works by selecting ID (cant use a class name as a substitute)
+
+
+---Coding Exercise (Some & Every Exercise)---
+Let's get some practice using getElementById. 
+I've provided a little bit of markup for you (please don't change it!)  
+Your goal is to write code in app.js to select the following elements using getElementById:
+
+Select the image element by its id and save it to a variable called image
+Select the h1 by its id and save it to a variable called heading
+
+//index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn</title>
+</head>
+<body>
+    <h1 id="mainheading">I &hearts; unicorns</h1>
+    <img src="https://devsprouthosting.com/images/unicorn.jpg" id="unicorn" alt="unicorn">
+</body>
+</html>
+
+// app.js
+let image = document.getElementById("unicorn");
+let heading = document.getElementById("mainheading");
+
+
+248. getElementsByTagName & className
+
+The Element.getElementsByTagName() method returns a live HTMLCollection of elements with the given tag name.
+
+// If we wanted to select all the images in our Silkie Chickens Doc, we can do:
+
+document.getElementsByTagName("IMG") // not case sensitive
+
+// We get back:
+
+HTMLCollection(4) [img#banner, img.square, img.square, img.square, banner: img#banner]
+
+What is returned is an HTML Collection (not an array!) 
+although it does have indexing and length functionality
+
+// We can use a For Of loop to affect objects, below we are using the "img" tag to make all the
+// images on this page the same image
+
+const allImages = document.getElementsByTagName('img');
+
+for (let img of allImages) {
+    img.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Silky_bantam.jpg/440px-Silky_bantam.jpg'
+}
+
+// Now we will select and affect some Elements using their class with getElementsByClassName()
+
+const squareImages = document.getElementsByClassName('square');
+
+for (let img of squareImages){
+    img.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Silky_bantam.jpg/440px-Silky_bantam.jpg';
+}
+
+// And with this code the element in the "square" class will be updated to match the source 
+// provided in the for of loop above
+
+
+249. querySelector & querySelectorAll
+
+querySelector
+(A newerm all-in-one method to select a single element)
+
+Syntax:
+
+// Finds the h1 element
+document.querySelector("h1");
+
+// Finds the first element with the ID of red
+document.querySelector("#red");
+
+// Finds the first element with the class of big
+document.querySelector(".big");
+
+Its important to note that when using querySelector() we only get 
+the first element that matches the query back.
+
+Example:
+document.querySelector("p"); // paragraph tag
+
+// we will only get back the first paragraph element, even if there are more paragraph tags
+
+If we wanted to get them all back we would simply use querySelectorAll() instead.
+
+---Coding Exercise (querySelector Practice)---
+I've provided you with some simple markup in index.html.  
+Your task is to use querySelector and querySelectorAll to select some of those elements.
+
+Select all elements that have the class of "done" and save them in a variable called doneTodos.
+
+Select the one checkbox and save it in a variable called checkbox. 
+Be careful, there is more than one input element on the page! 
+You'll need to select using the type attribute. 
+(if you can't remember the css attribute selector...google it! That's what I would do!)
+
+// my answer
+let doneTodos = document.querySelectorAll('.done');
+let checkbox = document.querySelector('input[type="checkbox"]');
+
+NOTE:
+Simgle quotes are probably the better option when it comes to web dev,
+as they can be used with double quotes, like so:
+
+let myString = 'This string contains "double quotes".';
+
+-------------------------------------------------------------------------------------------------------------
+6/29/23: 12pm -230pm
+
+250. innerHTML, textContent, &innerText
+
+In this section we are briefly introduced to a variety of properties/methods that are associated with the
+DOM stuff
+
+Here is a list of said properties/methods:
+
+Properties
+- classList
+- innerText
+- textContent
+- innerHTML
+- value
+- parentElement 
+- children
+- nextSibling
+- previousSibling
+- style
+
+Methods
+- createElement()
+- getAttribute()
+- setAttribute()
+- appendChild()
+- prepend()
+- removeChild()
+- remove()
+
+// Review for selecting an h1 element
+
+const h1 = document.querySelector('h1');
+console.dir(h1);
+
+// Once selected we scroll the properties in the dev tools and look for the properties
+called innerHTML, innerText, textContent
+
+// Now we select a paragraph using the querySelector (to see what the innerText looks like)
+
+document.querySelector('p').innerText;
+
+// We get all the text in between the opening/closing tags of that paragraph element
+
+// We can also alter the content of that paragraph (like a JavaScript object)
+
+document.querySelector('p').innerText = 'lololol'
+
+// The contents of that paragraph are now just 'lololol'
+
+// Now we again use the querySelector to select the textContent property 
+
+document.querySelector('p').textContent
+
+// What we get back is similar to the innerText but has spacing similar to the markup used 
+// for creating the content of that paragraph (in the Text Editor)
+
+// The main difference is with textContent, we get back everything in the element, 
+// regardless of whether its being hidden with code or not
+
+// With innerHTML what we get back is all the text with all the HTML tags
+
+The main take away from this section is that we can:
+- retrieve the current value with the . operator (.innerText)
+- update the value using the = operator (.innerText = 'lololol')
+
+---Coding Exercise (Pickles Exercise)---
+I've provided you with some basic markup in index.html
+Please use JavaScript to select the <span> element that currently reads "Delicious"
+
+Change its text to read "Disgusting" USING JAVASCRIPT. 
+Even if you are a weirdo who likes pickles, please change the text to "Disgusting". 
+
+Yes, you could cheat and just update the html file directly, but I hope you don't!  
+The goal here is to practice using JavaScript to manipulate HTML.
+
+document.querySelector('span').innerText = "Disgusting"
+
+
+251. Attributes
+
+// Lets start by selecting an image on the page (by id)
+
+document.querySelector('#banner')
+
+// We get the image information back, and we can see that 2 attributes have been set
+<img id="banner" 
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Silky_bantam.jpg/440px-Silky_bantam.jpg" alt="">
+
+// Those attributes are id, and src
+
+// We can select one of those attributes by its property, and alter the value 
+// (which will disrupt any styles that were using the original id as a selector)
+
+document.querySelector('#banner').id = 'newBannerId';
+
+// Point is we can access any attribute in our HTML like so:
+
+document.querySelector('a').title;
+
+// Above we have selected the title attribute for an Anchor Tag 
+
+There is another way of accessing attributes directly,
+which is by using a method called getAttribute()
+
+// Lets create a variable for the first Anchor Tag in the Doc
+
+const firstLink = document.querySelector('a');
+
+// And call getAttribute on it
+
+firstLink.getAttribute('href'); // "/wiki/something_on_wikipedia"
+
+// We can check if there is id attribute (there isnt)
+
+firstLink.getAttribute('id'); // null
+
+// If we want to add an id we can do that with the setAttribute() method
+
+firstLink.setAttribute('id', 'newId'); 
+
+
+---Coding Exercise (Manipulating Attributes Practice)---
+Let's get some practice working with DOM element attributes. 
+I've provided you with some very basic markup.  Please select the image element and:
+
+change its source to this url: https://devsprouthosting.com/images/chicken.jpg
+
+change its alt text to be "chicken"
+
+const image = document.getAttribute('img')
+image.setAttribute('')
+
+document.querySelector('img').src = 'https://devsprouthosting.com/images/chicken.jpg';
+document.querySelector('img').alt = "chicken";
+
+
+252. Changing Styles
+
+In this section we will go over how to manipulate styles using JavaScript
+
+// Start by selecting the h1 element
+
+const h1 = document.querySelector('h1');
+
+// We select the style property
+
+h1.style
+
+// When we do this we wont get back the styling done in our style.css file,
+// we only get the inline styles back (which shouldnt be used!)
+
+// However, we can change the styles by using our h1 variable, like so:
+
+h1.style.color = 'green';
+
+// So basically we can set style properties through the DOM (but its not ideal)
+
+// One other method that may come in handy later is window.getComputedStyle()
+
+// This will return properties associated with the element we pass into it, like so:
+
+window.getComputedStyle(h1).fontSize // "32px"
+
+window.getComputedStyle(h1).color // "#000000"
+
+There is a better way to apply new styles to elements, which is through classes!
+
+
+-------------------------------------------------------------------------------------------------------------
+7/5/23: 11am - 1pm
+
+---Coding Exercise (Magical Forest Circle Exercise)---
+I've provided you with some basic markup in index.html.  
+Please do not change any of the markup directly. Instead, use JavaScript to make the following changes:
+
+Select the div with the id of container.  
+Using JavaScript, set it's text alignment to 'center';
+
+Select the image and use JavaScript to give it a width of 150px and a border radius of 50%
+
+Remember to use camelCased property names in JavaScript! (backgroundColor, not background-color, etc.)
+
+const container = document.getElementById('container');
+container.style.textAlign = 'center';
+
+const image = document.querySelector('img');
+image.style.width = '150px';
+image.style.borderRadius = '50%';
+
+
+---Coding Exercise (Rainbow Text Exercise)---
+I've provided you with an <h1> element which contains 7 individual spans (each holding a single letter). 
+
+Please write some JavaScript to make them rainbow-colored! 
+
+In app.js you'll find an array of color names called colors.  
+It looks like: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'].
+
+Your task is to select all spans, iterate over them, 
+and assign them each one of the colors from the colors array.  
+The first span should be red, the second should be orange, etc.
+
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+const allSpans = document.querySelectorAll('h1 span');
+
+let index = 0;
+for (let span of allSpans) {
+    span.style.color = colors[index];
+    index++;
+}
+
+-------------------------------------------------------------------------------------------------------------
+7/5/23: 11am - 1230pm
+
+
+253. ClassList
+
+ClassList
+(An object we can interact with to control the classes on an element, and also to retrieve/manipulate them)
+
+// Lets start by selecting an H2 element in the doc (no classes on it)
+
+const h2 = document.querySelector('h2');
+
+// We can call classList on our h2 var to see what classes are associated with it
+
+h2.classList // this will return class names in that h2
+
+// We can add the class "purple" using the .add() method
+
+h2.classList.add('purple');
+
+// We can easily add another class in this manner
+
+h2.classList.add('border');
+
+// If we wanted to remove a class we just use .remove() instead
+
+h2.classList.remove('border');
+
+// Another method we can use on classList is toggle()
+
+h2.classList.toggle('purple'); 
+
+// This will toggle that class on & off (so if we toggle purple, and its already set to purple,
+it will now be toggled 'off', and remove that purple from the h2)
+
+
+---Coding Exercise (ClassList Practice)---
+In index.html, you'll find 6 <li> elements, two of which have the 'highlight' class applied to them. 
+
+Please use JavaScript and the classList property to invert which elements have the highlight class. 
+
+Basically iterate over all the <li> elements and toggle the class of 'highlight' on each one.  
+
+const allLi = document.querySelectorAll('li');
+
+for (let li of allLi){
+    li.classList.toggle('highlight');
+}
+
+
+254. Traversing Parent/Child/Sibling
+
+In this section we will be talking about properties that help us navigate from one "relative"
+to another (like from parent to child to sibling)
+
+// Lets say we want to get the first bold tag in our doc
+
+const firstBold = document.querySelector('b');
+
+// We can call a property called parentElement on it to access its parent element (this will traverse upwards)
+
+firstBold.parentElement // <p>....</p>
+
+// Lets take the result of the previous statement to make a new var
+
+paragraph = firstBold.parentElement
+
+// We can now call the children property on it to return all children in the order that they appear
+
+paragraph.children // HTMLCollection(8) [b,b,a,a,a,a,a,a]
+
+
+-------------------------------------------------------------------------------------------------------------
+7/25/23: 1130am - 1230pm
+
+Append & AppendChild
+
+// In this section we will go over how to create new elements from scratch
+
+// So, we will create a new element and append it to the page 
+
+How does one make a new DOM Element?
+
+// There is a method called Document.createElement()
+
+In an HTML document, the document.createElement() method creates the HTML element 
+specified by the tagName, or an HTMLUnknownElement if tagName is recognized.
+
+// Lets start simple by creating an image element
+
+const newImage = document.createElement('img');
+
+// Now we are just missing the source for this new element
+
+newImg.src = 'Docs/WebImages/cute_dog.png';
+
+// Next we must append the image to the page
+
+document.body.appendChild(newImage);
+
+
+// Now lets create an H3 element
+
+const newH3 = document.createElement('h3');
+
+// We can set the inner text
+
+newH3.innerText = 'This is an h3!';
+
+// Then we append it to the document 
+
+document.body.appendChild(newH3);
+
+
+// We can use a newer method called append() to add stuff to an existing element
+
+The ParentNode.append() method inserts a set of Node or DOMString objects after the last 
+child of the parentNode. DOMString objects are inserted as equivalent Text nodes.
+
+// append() will also allow us to insert more than one thing at a time 
+
+const p = document.querySelector('p');
+
+p.append('this text will be added to the end of the selected paragraph');
+
+// This cannot be done with appendChild as it only returns a node object
+
+Another similar method is prepend() which would add something to the beginning
+of an element.
+
+// Lets make a new BoldTag element and give it some text
+
+const b = document.createElement('b');
+
+newB.append('Hi!'); // we can use append() instead of innerText here
+
+// Now we can prepend the bold tag to the beginning of our paragraph
+
+p.prepend(newB);
+
+// If we want to insert a sibling element we will use insertAdjacentElement()
+
+The insertAdjacentElement() method of the Element interface inserts a given element
+node at a given position relative to the element its invoked upon.
+targetElement.insertAdjacentElement(position, element);
+
+// Lets create a new H2 that we will insert after the H1 but before an image following the H1
+
+const h2 = document.createElement('h2');
+
+h2.append('Silkie chickens are adorbs');
+
+// Lets select the h1 first
+
+const h1 = document.querySelector('h1');
+
+// Now we will call insertAdjacentElement, but we must specific where the insertion will occur
+Here are the options for postion:
+'beforebegin' = before the targetElement itself
+'afterbegin' = just inside the targetElement, before its first child
+'beforeend' = just inside the targetElement, after its last child
+'afterend' = after the targetElement itself
+
+h1.insertAdjacentElement('afterend', h2); // it is now inserted after the h1 element
+
+
+---Coding Exercise (100 Button Insanity Exercise)---
+Without touching index.html, please use JavaScript to create exactly 100 new button elements! 
+Add each new button inside the container element provided in index.html.  
+Unfortunately, Udemy's exercise tool does not support to the append method, 
+so you will need to use appendChild.  
+
+Here are the steps:
+Create exactly 100 new button elements
+Each button must have some text inside of it (it doesn't matter what)
+Each button must be appended inside the container div.
+
+const contDiv = document.querySelector('div');
+
+for (let i = 0; i < 100; i++) {
+    const muchoButtons = document.createElement('button');
+    muchoButtons.innerText = 'press me'
+    contDiv.appendChild(muchoButtons);
+}
+
+
+-------------------------------------------------------------------------------------------------------------
+8/31/23: 1130am - 130pm
+
+256. removeChild & remove
+
+removeChild
+(this method removes a child node from the DOM and returns the removed child)
+const oldChild = node.removeChild(child);
+
+Here we go through the steps to remove a li(list item) from a ul(unordered list element)
+
+// first we get access to the li 
+const firstLi = document.querySelector('li');
+
+// next we have to get the parent of the li
+const ul = firstLi.parentElement;
+
+// now we can remove the child
+ul.removeChild(firstLi);
+
+There is another more modern way to do this.
+
+// by using the newer remove() method
+li.remove();
+
+// lets remove an image 
+const img = document.querySelector('img');
+img.remove();
+
+
+257. Pokemon Sprites Demo
+
+Here we take individual images of Pokemon on GitHub and put them all together with their numbers on one page.
+
+// https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png
+
+const container = document.querySelector('#container');
+const baseURL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
+
+
+for (let i = 1; i <= 151; i++) {
+    const pokemon = document.createElement('div');
+    pokemon.classList.add('pokemon');
+    const label = document.createElement('span');
+    label.innerText = `#${i}`;
+    const newImg = document.createElement('img');
+    newImg.src = `${baseURL}${i}.png`
+
+    pokemon.appendChild(newImg);
+    pokemon.appendChild(label);
+    container.appendChild(pokemon)
+}
+
+
+
+
+
+
+
 
 
 
